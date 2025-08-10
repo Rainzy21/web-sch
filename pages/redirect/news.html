@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Berita Sekolah</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    nav {
+      font-family: 'Poppins', sans-serif;
+    }
+    .drawer-side {
+      transition: transform 0.3s ease-in-out;
+    }
+    input[type="checkbox"]:not(:checked) ~ .drawer-side {
+      transform: translateX(-100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gray-100">
+
+  <div class="drawer">
+    <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content flex flex-col">
+      <!-- Navbar -->
+      <nav class="navbar bg-base-100 shadow-sm sticky top-0 z-50">
+        <!-- Hamburger (HP) -->
+        <div class="flex-none lg:hidden">
+          <label for="nav-drawer" class="btn btn-square btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </label>
+        </div>
+        <!-- Logo -->
+        <div class="flex-1 flex items-center gap-3">
+          <img src="/assets/logo.png" alt="Logo" class="h-12 w-auto rounded-full" />
+          <h1 class="text-sm font-semibold flex flex-col leading-tight">
+            <span>SEKOLAH DASAR</span>
+            <span>NEGERI 001</span>
+            <span>SAMARINDA</span>
+          </h1>
+        </div>
+        <!-- Menu Desktop -->
+        <div class="flex-none hidden lg:block">
+          <ul class="menu menu-horizontal px-1">
+            <li><a href="../index.html">Home</a></li>
+            <li>
+              <details>
+                <summary>About</summary>
+                <ul class="bg-base-100 rounded-t-none p-2">
+                  <li><a href="profile.html">Profile</a></li>
+                  <li><a href="history.html">History</a></li>
+                  <li><a>Goals</a></li>
+                  <li><a>Structure</a></li>
+                  <li><a>Important</a></li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details>
+                <summary>Inside</summary>
+                <ul class="bg-base-100 rounded-t-none p-2">
+                  <li><a  href="curriculum.html">Curriculum</a></li>
+                  <li><a>Extracurricular</a></li>
+                  <li><a>Milestones</a></li>
+                  <li><a>Facilities</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a>News & Events</a></li>
+            <li><a>Gallery</a></li>
+            <li>
+              <details>
+                <summary>Reach Us</summary>
+                <ul class="bg-base-100 rounded-t-none p-2">
+                  <li><a>Contact</a></li>
+                  <li><a>Find</a></li>
+                  <li><a>Social Media</a></li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <!-- Drawer Mobile -->
+    <div class="drawer-side bg-base-100 shadow-lg">
+      <label for="nav-drawer" class="drawer-overlay"></label>
+      <div class="w-64 p-4 flex flex-col gap-4 h-full">
+        <!-- Header Drawer -->
+        <div class="flex justify-between items-center">
+          <h2 class="text-lg font-bold">Menu</h2>
+          <!-- Tombol Close -->
+          <label for="nav-drawer" class="btn btn-sm btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </label>
+        </div>
+        <hr />
+        <!-- Menu List -->
+        <ul class="menu flex-1">
+          <li><a href="../index.html">Home</a></li>
+          <li>
+            <details>
+              <summary>About</summary>
+              <ul>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a>Goals</a></li>
+                <li><a>Structure</a></li>
+                <li><a>Important</a></li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Inside</summary>
+              <ul>
+                <li><a href="curriculum.html">Curriculum</a></li>
+                <li><a>Extracurricular</a></li>
+                <li><a>Milestones</a></li>
+                <li><a>Facilities</a></li>
+              </ul>
+            </details>
+          </li>
+          <li><a href="news.html">News & Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li>
+            <details>
+              <summary>Reach Us</summary>
+              <ul>
+                <li><a>Contact</a></li>
+                <li><a>Find</a></li>
+                <li><a>Social Media</a></li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <header>
+    <div class="max-w-7xl mx-auto px-4 py-6 flex justify-center">
+      <h1 class="text-2xl font-semibold text-gray-800 text-center">BERITA SEKOLAH</h1>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="border rounded-lg overflow-hidden shadow-lg">
+      <img src="/assets/1.jpg" alt="Berita 1" class="w-full" />
+      <div class="p-4">
+        <h2 class="font-bold text-lg">Judul Berita 1</h2>
+        <p class="text-gray-600">Deskripsi singkat berita 1.</p>
+        <button onclick="showDetails('Berita 1')" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Detail</button>
+      </div>
+    </div>
+
+    <div class="border rounded-lg overflow-hidden shadow-lg">
+      <img src="https://via.placeholder.com/300" alt="Berita 2" class="w-full" />
+      <div class="p-4">
+        <h2 class="font-bold text-lg">Judul Berita 2</h2>
+        <p class="text-gray-600">Deskripsi singkat berita 2.</p>
+        <button onclick="showDetails('Berita 2')" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Detail</button>
+      </div>
+    </div>
+
+    <div class="border rounded-lg overflow-hidden shadow-lg">
+      <img src="https://via.placeholder.com/300" alt="Berita 3" class="w-full" />
+      <div class="p-4">
+        <h2 class="font-bold text-lg">Judul Berita 3</h2>
+        <p class="text-gray-600">Deskripsi singkat berita 3.</p>
+        <button onclick="showDetails('Berita 3')" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Detail</button>
+      </div>
+    </div>
+
+    <!-- Tambahkan lebih banyak berita sesuai kebutuhan -->
+  </main>
+
+  <script>
+    function showDetails(title) {
+      alert("Anda mengklik detail untuk: " + title);
+    }
+  </script>
+<script src="/pages/script.js"></script>
+</body>
+</html>
