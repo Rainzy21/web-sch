@@ -43,8 +43,28 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((html) => {
         navbarPlaceholder.innerHTML = html;
         setActiveNavLink();
+
+        // Setelah navbar, load footer jika ada
+        const footerPlaceholder = document.getElementById("footer");
+        if (footerPlaceholder) {
+          fetch("/components/footer.html")
+            .then((res) => res.text())
+            .then((footerHtml) => {
+              footerPlaceholder.innerHTML = footerHtml;
+            });
+        }
       });
   } else {
     setActiveNavLink();
+
+    // Jika navbar tidak dinamis, tetap load footer jika ada
+    const footerPlaceholder = document.getElementById("footer");
+    if (footerPlaceholder) {
+      fetch("/components/footer.html")
+        .then((res) => res.text())
+        .then((footerHtml) => {
+          footerPlaceholder.innerHTML = footerHtml;
+        });
+    }
   }
 });
