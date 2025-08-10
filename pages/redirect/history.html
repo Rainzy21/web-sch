@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      nav {
+        font-family: "Poppins", sans-serif;
+      }
+      .drawer-side {
+        transition: transform 0.3s ease-in-out;
+      }
+      input[type="checkbox"]:not(:checked) ~ .drawer-side {
+        transform: translateX(-100%);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div class="drawer">
+      <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content flex flex-col">
+        <!-- Navbar -->
+        <nav class="navbar bg-base-100 shadow-sm sticky top-0 z-50">
+          <!-- Hamburger (HP) -->
+          <div class="flex-none lg:hidden">
+            <label for="nav-drawer" class="btn btn-square btn-ghost">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </label>
+          </div>
+          <!-- Logo -->
+          <div class="flex-1 flex items-center gap-3">
+            <img
+              src="/assets/logo.png"
+              alt="Logo"
+              class="h-12 w-auto rounded-full"
+            />
+            <h1 class="text-sm font-semibold flex flex-col leading-tight">
+              <span>SEKOLAH DASAR</span>
+              <span>NEGERI 001</span>
+              <span>SAMARINDA</span>
+            </h1>
+          </div>
+          <!-- Menu Desktop -->
+          <div class="flex-none hidden lg:block">
+            <ul class="menu menu-horizontal px-1">
+              <li><a href="../index.html">Home</a></li>
+              <li>
+                <details>
+                  <summary>About</summary>
+                  <ul class="bg-base-100 rounded-t-none p-2">
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="history.html">History</a></li>
+                    <li><a>Goals</a></li>
+                    <li><a>Structure</a></li>
+                    <li><a>Important</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary>Inside</summary>
+                  <ul class="bg-base-100 rounded-t-none p-2">
+                    <li><a href="curriculum.html">Curriculum</a></li>
+                    <li><a>Extracurricular</a></li>
+                    <li><a>Milestones</a></li>
+                    <li><a>Facilities</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a>News & Events</a></li>
+              <li><a>Gallery</a></li>
+              <li>
+                <details>
+                  <summary>Reach Us</summary>
+                  <ul class="bg-base-100 rounded-t-none p-2">
+                    <li><a>Contact</a></li>
+                    <li><a>Find</a></li>
+                    <li><a>Social Media</a></li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <!-- Drawer Mobile -->
+      <div class="drawer-side bg-base-100 shadow-lg">
+        <label for="nav-drawer" class="drawer-overlay"></label>
+        <div class="w-64 p-4 flex flex-col gap-4 h-full">
+          <!-- Header Drawer -->
+          <div class="flex justify-between items-center">
+            <h2 class="text-lg font-bold">Menu</h2>
+            <!-- Tombol Close -->
+            <label for="nav-drawer" class="btn btn-sm btn-ghost">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </label>
+          </div>
+          <hr />
+          <!-- Menu List -->
+          <ul class="menu flex-1">
+            <li><a href="../index.html">Home</a></li>
+            <li>
+              <details>
+                <summary>About</summary>
+                <ul>
+                  <li><a href="profile.html">Profile</a></li>
+                  <li><a href="profile.html">History</a></li>
+                  <li><a>Goals</a></li>
+                  <li><a>Structure</a></li>
+                  <li><a>Important</a></li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details>
+                <summary>Inside</summary>
+                <ul>
+                  <li><a href="curriculum.html">Curriculum</a></li>
+                  <li><a>Extracurricular</a></li>
+                  <li><a>Milestones</a></li>
+                  <li><a>Facilities</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a>News & Events</a></li>
+            <li><a>Gallery</a></li>
+            <li>
+              <details>
+                <summary>Reach Us</summary>
+                <ul>
+                  <li><a>Contact</a></li>
+                  <li><a>Find</a></li>
+                  <li><a>Social Media</a></li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <main class="p-4">
+      <h2 class="text-2xl font-bold mb-4">History</h2>
+      <ul class="timeline timeline-vertical">
+        <!-- 1975 -->
+        <li>
+          <div
+            class="timeline-start timeline-box bg-primary text-white shadow-lg"
+          >
+            <h3 class="text-lg font-semibold">1975 - Berdirinya Sekolah</h3>
+            <p class="text-sm mt-1 leading-relaxed">
+              SDN 001 Samarinda didirikan pada tahun 1975 sebagai salah satu
+              pelopor pendidikan dasar di kota ini. Dengan bangunan sederhana
+              dan hanya beberapa ruang kelas, sekolah ini lahir dari semangat
+              gotong royong masyarakat setempat dan dukungan pemerintah daerah.
+              Sejak awal, tujuan utamanya adalah menyediakan pendidikan yang
+              terjangkau dan berkualitas, agar anak-anak di wilayah Samarinda
+              memiliki bekal ilmu untuk masa depan yang lebih baik.
+            </p>
+          </div>
+          <div class="timeline-middle">
+            <div
+              class="bg-primary text-white w-8 h-8 flex items-center justify-center rounded-full font-bold"
+            >
+              1
+            </div>
+          </div>
+          <hr class="bg-primary" />
+        </li>
+
+        <!-- 1980 -->
+        <li>
+          <hr class="bg-primary" />
+          <div class="timeline-middle">
+            <div
+              class="bg-primary text-white w-8 h-8 flex items-center justify-center rounded-full font-bold"
+            >
+              2
+            </div>
+          </div>
+          <div
+            class="timeline-end timeline-box bg-primary text-white shadow-lg"
+          >
+            <h3 class="text-lg font-semibold">
+              1980 - Penambahan Fasilitas Pertama
+            </h3>
+            <p class="text-sm mt-1 leading-relaxed">
+              Lima tahun setelah berdiri, sekolah mulai memperluas fasilitasnya.
+              Dibangun ruang kelas tambahan, ruang guru yang lebih nyaman, dan
+              perpustakaan sederhana yang menjadi pusat belajar siswa.
+              Perkembangan ini tak lepas dari peran aktif para guru, komite
+              sekolah, dan dukungan masyarakat yang percaya akan pentingnya
+              pendidikan. Perpustakaan ini menjadi sumber pengetahuan utama bagi
+              siswa yang kala itu belum memiliki akses internet.
+            </p>
+          </div>
+          <hr class="bg-primary" />
+        </li>
+
+        <!-- 2000 -->
+        <li>
+          <hr class="bg-primary" />
+          <div
+            class="timeline-start timeline-box bg-primary text-white shadow-lg"
+          >
+            <h3 class="text-lg font-semibold">
+              2000 - Modernisasi Pembelajaran
+            </h3>
+            <p class="text-sm mt-1 leading-relaxed">
+              Memasuki abad ke-21, SDN 001 Samarinda memulai langkah besar dalam
+              modernisasi pembelajaran. Laboratorium komputer pertama didirikan
+              untuk memperkenalkan siswa pada teknologi digital. Guru-guru
+              mendapatkan pelatihan khusus agar mampu mengintegrasikan teknologi
+              dalam metode pengajaran. Selain itu, kegiatan ekstrakurikuler
+              diperluas — mulai dari seni, olahraga, hingga sains — sehingga
+              siswa dapat mengembangkan bakat dan minatnya secara seimbang.
+            </p>
+          </div>
+          <div class="timeline-middle">
+            <div
+              class="bg-primary text-white w-8 h-8 flex items-center justify-center rounded-full font-bold"
+            >
+              3
+            </div>
+          </div>
+          <hr class="bg-primary" />
+        </li>
+
+        <!-- Sekarang -->
+        <li>
+          <hr class="bg-primary" />
+          <div class="timeline-middle">
+            <div
+              class="bg-primary text-white w-8 h-8 flex items-center justify-center rounded-full font-bold"
+            >
+              4
+            </div>
+          </div>
+          <div
+            class="timeline-end timeline-box bg-primary text-white shadow-lg"
+          >
+            <h3 class="text-lg font-semibold">
+              Sekarang - Sekolah Berprestasi
+            </h3>
+            <p class="text-sm mt-1 leading-relaxed">
+              Kini, SDN 001 Samarinda dikenal sebagai sekolah berprestasi di
+              berbagai ajang akademik dan non-akademik, baik tingkat kota maupun
+              provinsi. Dengan fasilitas modern, lingkungan belajar yang nyaman,
+              dan guru-guru profesional, sekolah ini terus berkomitmen mencetak
+              generasi yang cerdas, kreatif, dan berkarakter. Setiap tahunnya,
+              banyak alumni yang berhasil melanjutkan pendidikan ke
+              sekolah-sekolah unggulan dan meraih prestasi di tingkat nasional.
+            </p>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Foto dokumentasi -->
+      <div class="mt-10 mb-20">
+        <img
+          src="/assets/history-photo.jpg"
+          alt="Foto sejarah sekolah"
+          class="rounded-lg shadow-md w-full max-w-3xl mx-auto"
+        />
+        <p class="text-center text-sm mt-2 text-gray-500">
+          Dokumentasi SDN 001 Samarinda dari masa ke masa
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
