@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-    }
-    nav {
-      font-family: 'Poppins', sans-serif;
-    }
-    .drawer-side {
-      transition: transform 0.3s ease-in-out;
-    }
-    input[type="checkbox"]:not(:checked) ~ .drawer-side {
-      transform: translateX(-100%);
-    }
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+      nav {
+        font-family: 'Poppins', sans-serif;
+      }
+      .drawer-side {
+        transition: transform 0.3s ease-in-out;
+      }
+      input[type="checkbox"]:not(:checked) ~ .drawer-side {
+        transform: translateX(-100%);
+      }
     </style>
-</head>
-<body class="min-h-screen flex flex-col">
+  </head>
+  <body class="min-h-screen flex flex-col">
   <div class="drawer">
     <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col">
@@ -36,10 +32,8 @@
         <!-- Hamburger (HP) -->
         <div class="flex-none lg:hidden">
           <label for="nav-drawer" class="btn btn-square btn-ghost">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </label>
         </div>
@@ -104,10 +98,8 @@
           <h2 class="text-lg font-bold">Menu</h2>
           <!-- Tombol Close -->
           <label for="nav-drawer" class="btn btn-sm btn-ghost">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M6 18L18 6M6 6l12 12" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </label>
         </div>
@@ -154,9 +146,49 @@
       </div>
     </div>
   </div>
-  <main class="flex-1 p-4">
-    <h2 class="text-2xl font-bold mb-4">Profile</h2>
-    <p>hai</p>
-  </main>
+
+  <!-- Hero Banner -->
+  <section class="relative bg-gray-900 text-white h-56 sm:h-72 md:h-96 flex items-center px-6 md:px-16" aria-label="Profile banner with mosque building">
+    <img 
+      src="/assets/1.jpg" 
+      alt="Mosque building with dome and minaret under clear blue sky with some trees" 
+      class="absolute inset-0 w-full h-full object-cover opacity-40" 
+      onerror="this.style.display='none';"
+    />
+    <div class="relative max-w-4xl">
+      <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">Profile Sekolah</h2>
+      <p class="mt-2 text-lg sm:text-xl font-semibold">Sekolah Dasar Negeri Samarinda</p>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <main class="max-w-5xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- Sejarah di kiri -->
+      <section class="mb-0">
+        <h3 class="text-xl font-semibold mb-4">Sejarah Sekolah</h3>
+        <p class="mb-6 text-justify leading-relaxed">
+          Yayasan Pendidikan Islam Sabilul Khoirot terletak di Jl. Raya Salatiga – Solo KM 8, Butuh, RT 20 RW 11, Kecamatan Tengaran,
+          Kabupaten Semarang. Cikal bakal yayasan ini sudah dimulai sejak tahun 1973 dalam bentuk Pondok Pesantren Sabilul Khoirot 
+          yang didirikan oleh al maghfur lahu Romo Kyai Haji Zaenal Mahmud. Dalam perjalanannya, beliau juga menginisiasi pembentukan yayasan resmi 
+          berakta notaris dengan nama Yayasan Amanat Umat. Dari Yayasan Amanat Umat ini lahirlah Madrasah Tsanawiyah Amanat Umat, 
+          12 Madrasah Ibtidaiyah dan 6 Raudhatul Athfal se kecamatan Tengaran, di samping itu juga lahirlah TKIT Nurul Islam tahun 1999 dan SDIT Nurul Islam tahun 2001.
+        </p>
+        <p class="mb-6 text-justify leading-relaxed">
+          Setelah melalui musyawarah pengurus, akhirnya disepakati membuat yayasan baru bernama Yayasan Pendidikan Islam Sabilul Khoirot, 
+          yang menanungi TKIT dan SDIT Nurul Islam. Sedangkan Yayasan Amanat Umat tetap eksis dengan 12 MI dan 6 RA nya. 
+          Adapun MTs Amanat Umat dilebur ke dalam pondok pesantren yang akhirnya bertransformasi menjadi SMPIT Nurul Islam (2007) dan Madrasah Aliyah Nurul Islam (2012), 
+          dan sekarang gedung SMPIT dan Madrasah aliyah berada di komplek baru.
+        </p>
+      </section>
+      <!-- Timeline di kanan -->
+      <section class="grid grid-cols-1 md:grid-cols- gap-">
+        <div class="flex flex-col gap-5">
+          <img src="/assets/1.jpg" alt="Dokumentasi 1" class="w-full h-64 object-cover rounded-xl shadow mb-6" />
+          <img src="/assets/1.jpg" alt="Dokumentasi 2" class="w-full h-64 object-cover rounded-xl shadow mb-6" />
+          <img src="/assets/1.jpg" alt="Dokumentasi 3" class="w-full h-64 object-cover rounded-xl shadow" />
+        </div>
+      </section>
+<script src="/pages/script.js"></script>
 </body>
 </html>
