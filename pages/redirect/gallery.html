@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+      nav {
+        font-family: 'Poppins', sans-serif;
+      }
+      .drawer-side {
+        transition: transform 0.3s ease-in-out;
+      }
+      input[type="checkbox"]:not(:checked) ~ .drawer-side {
+        transform: translateX(-100%);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col">
+  <div class="drawer">
+    <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content flex flex-col">
+      <!-- Navbar -->
+      <nav class="navbar bg-base-100 shadow-sm sticky top-0 z-50">
+        <!-- Hamburger (HP) -->
+        <div class="flex-none lg:hidden">
+          <label for="nav-drawer" class="btn btn-square btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </label>
+        </div>
+        <!-- Logo -->
+        <div class="flex-1 flex items-center gap-3">
+          <img src="/assets/logo.png" alt="Logo" class="h-12 w-auto rounded-full" />
+          <h1 class="text-sm font-semibold flex flex-col leading-tight">
+            <span>SEKOLAH DASAR</span>
+            <span>NEGERI 001</span>
+            <span>SAMARINDA</span>
+          </h1>
+        </div>
+        <!-- Menu Desktop -->
+        <div class="flex-none hidden lg:block">
+          <ul class="menu menu-horizontal px-1">
+            <li><a href="../index.html">Home</a></li>
+            <li>
+              <details>
+                <summary>About</summary>
+                <ul class="bg-base-100 rounded-t-none p-2">
+                  <li><a href="profile.html">Profile</a></li>
+                  <li><a href="history.html">History</a></li>
+                  <li><a>Goals</a></li>
+                  <li><a>Structure</a></li>
+                  <li><a>Important</a></li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details>
+                <summary>Inside</summary>
+                <ul class="bg-base-100 rounded-t-none p-2">
+                  <li><a  href="curriculum.html">Curriculum</a></li>
+                  <li><a>Extracurricular</a></li>
+                  <li><a>Milestones</a></li>
+                  <li><a>Facilities</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a>News & Events</a></li>
+            <li><a>Gallery</a></li>
+            <li>
+              <details>
+                <summary>Reach Us</summary>
+                <ul class="bg-base-100 rounded-t-none p-2">
+                  <li><a>Contact</a></li>
+                  <li><a>Find</a></li>
+                  <li><a>Social Media</a></li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <!-- Drawer Mobile -->
+    <div class="drawer-side bg-base-100 shadow-lg">
+      <label for="nav-drawer" class="drawer-overlay"></label>
+      <div class="w-64 p-4 flex flex-col gap-4 h-full">
+        <!-- Header Drawer -->
+        <div class="flex justify-between items-center">
+          <h2 class="text-lg font-bold">Menu</h2>
+          <!-- Tombol Close -->
+          <label for="nav-drawer" class="btn btn-sm btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </label>
+        </div>
+        <hr />
+        <!-- Menu List -->
+        <ul class="menu flex-1">
+          <li><a href="../index.html">Home</a></li>
+          <li>
+            <details>
+              <summary>About</summary>
+              <ul>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a>Goals</a></li>
+                <li><a>Structure</a></li>
+                <li><a>Important</a></li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Inside</summary>
+              <ul>
+                <li><a href="curriculum.html">Curriculum</a></li>
+                <li><a>Extracurricular</a></li>
+                <li><a>Milestones</a></li>
+                <li><a>Facilities</a></li>
+              </ul>
+            </details>
+          </li>
+          <li><a>News & Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li>
+            <details>
+              <summary>Reach Us</summary>
+              <ul>
+                <li><a>Contact</a></li>
+                <li><a>Find</a></li>
+                <li><a>Social Media</a></li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</head>
+
+<!-- Main Content -->
+<body class="bg-gray-100">
+    <div class="container mx-auto py-8">
+        <h1 class="text-4xl font-bold text-center mb-8"> GALLERY SD NEGERI SAMARINDA </h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="gallery-grid">
+      <!-- Card 1 -->
+      <div class="bg-blue-200 rounded-lg shadow-lg overflow-hidden flex">
+        <img src="/assets/1.jpg" alt="Gambar 1" class="object-cover w-full h-48" />
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-blue-200 rounded-lg shadow-lg overflow-hidden flex">
+        <img src="/assets/1.jpg" alt="Gambar 2" class="object-cover w-full h-48" />
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-blue-200 rounded-lg shadow-lg overflow-hidden flex">
+        <img src="/assets/1.jpg" alt="Gambar 3" class="object-cover w-full h-48" />
+      </div>
+
+      <!-- Tambahkan card lain sesuai kebutuhan dengan format di atas -->
+      <div class="bg-blue-200 rounded-lg shadow-lg overflow-hidden flex">
+        <img src="/assets/1.jpg" alt="Gambar" class="object-cover w-full h-48" />
+      </div>
+
+      <div class="bg-blue-200 rounded-lg shadow-lg overflow-hidden flex">
+        <img src="/assets/1.jpg" alt="Gambar" class="object-cover w-full h-48" />
+      </div>
+
+      <div class="bg-blue-200 rounded-lg shadow-lg overflow-hidden flex">
+        <img src="https://via.placeholder.com/150" alt="Gambar" class="object-cover w-full h-48" />
+      </div>
+      <div class="bg-blue-200 rounded-lg shadow-lg overflow-hidden flex">
+        <img src="https://via.placeholder.com/150" alt="Gambar" class="object-cover w-full h-48" />
+      </div>
+      <div class="bg-blue-200 rounded-lg shadow-lg overflow-hidden flex">
+        <img src="https://via.placeholder.com/150" alt="Gambar" class="object-cover w-full h-48" />
+      </div>
+      <div class="bg-blue-200 rounded-lg shadow-lg overflow-hidden flex">
+        <img src="https://via.placeholder.com/150" alt="Gambar" class="object-cover w-full h-48" />
+      </div>
+      <div class="bg-blue-200 rounded-lg shadow-lg overflow-hidden flex">
+        <img src="https://via.placeholder.com/150" alt="Gambar" class="object-cover w-full h-48" />
+      </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex items-center" id="pagination">
+        <span class="mr-2">Showing <strong>1 to 12</strong> of <strong>35</strong></span>
+        <nav>
+            <ul class="flex space-x-2">
+                <li>
+                    <a href="#" class="px-3 py-1 border border-gray-300 rounded hover:bg-blue-500 hover:text-white">1</a>
+                </li>
+                <li>
+                    <a href="#" class="px-3 py-1 border border-gray-300 rounded hover:bg-blue-500 hover:text-white">2</a>
+                </li>
+                <li>
+                    <a href="#" class="px-3 py-1 border border-gray-300 rounded hover:bg-blue-500 hover:text-white">3</a>
+                </li>
+                <li>
+                    <a href="#" class="px-3 py-1 border border-gray-300 rounded hover:bg-blue-500 hover:text-white">»</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+        <script>
+  // Daftar gambar gallery
+  const galleryImages = [
+    '/assets/1.jpg',
+    'https://via.placeholder.com/150',
+    'https://via.placeholder.com/150',
+    '/assets/logo.png',
+    'https://i.pinimg.com/736x/7c/ef/4d/7cef4d44050e27b5618b982e8b06abb2.jpg'
+    // ...tambahkan gambar lain sesuai kebutuhan
+  ];
+  const totalItems = galleryImages.length;
+  const itemsPerPage = 12;
+  let currentPage = 1;
+
+  function renderGallery() {
+    const startIdx = (currentPage - 1) * itemsPerPage;
+    const endIdx = Math.min(currentPage * itemsPerPage, totalItems);
+    const grid = document.getElementById('gallery-grid');
+    grid.innerHTML = '';
+    for (let i = startIdx; i < endIdx; i++) {
+      const imgSrc = galleryImages[i];
+      const card = document.createElement('div');
+      card.className = 'bg-blue-200 rounded-lg shadow-lg overflow-hidden flex';
+      card.innerHTML = `<img src="${imgSrc}" alt="Gambar ${i+1}" class="object-cover w-full h-48" />`;
+      grid.appendChild(card);
+    }
+  }
+
+  function updatePagination() {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    const startItem = (currentPage - 1) * itemsPerPage + 1;
+    const endItem = Math.min(currentPage * itemsPerPage, totalItems);
+    let paginationHtml = `<span class='mr-2'>Menampilkan <strong>${startItem} - ${endItem}</strong> dari <strong>${totalItems}</strong></span>`;
+    paginationHtml += `<nav><ul class='flex space-x-2'>`;
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === currentPage) {
+        paginationHtml += `<li><span class='px-3 py-1 border border-blue-500 bg-blue-500 text-white rounded'>${i}</span></li>`;
+      } else {
+        paginationHtml += `<li><a href='#' class='px-3 py-1 border border-gray-300 rounded hover:bg-blue-500 hover:text-white' onclick='goToPage(${i});return false;'>${i}</a></li>`;
+      }
+    }
+    paginationHtml += `</ul></nav>`;
+    document.getElementById('pagination').innerHTML = paginationHtml;
+  }
+
+  window.goToPage = function(page) {
+    currentPage = page;
+    renderGallery();
+    updatePagination();
+  }
+
+  // Initial render
+  renderGallery();
+  updatePagination();
+</script>
+<script src="/pages/script.js"></script>
+</body>
+</html>
