@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fasilitas</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/pages/output.css" />
+    
+
+    <style>
+    body {
+      font-family: 'Roboto', sans-serif; /* untuk isi artikel */
+    }
+    nav {
+      font-family: 'Poppins', sans-serif; /* untuk judul */
+    }
+
+    /* Animasi slide in/out */
+    .drawer-side {
+      transition: transform 0.3s ease-in-out;
+    }
+    input[type="checkbox"]:not(:checked) ~ .drawer-side {
+      transform: translateX(-100%);
+    }
+
+    /* Gaya untuk link aktif di navbar */
+    .nav-link.active {
+      color: hsl(var(--p));
+      font-weight: bold;
+    }
+
+    /* Gaya hover untuk dropdown */
+    details summary {
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    details summary:hover {
+      background-color: hsl(var(--b2));
+    }
+    </style>
+    
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <main>
+        <div class="relative overflow-hidden bg-gradient-to-r from-primary to-secondary h-96">
+        <div class="absolute inset-0">
+            <img src="/assets/1.jpg?q=80&w=1470&auto=format&fit=crop" 
+                 alt="Fasilitas Sekolah" class="w-full h-full object-cover ">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
+            <div class="animate-fade-in-up">
+                <span class="inline-block bg-accent text-white text-sm font-semibold px-3 py-1 rounded-full mb-4">Fasilitas Unggulan</span>
+                <h1 class="text-4xl sm:text-5xl font-bold text-white text-shadow mb-4">Fasilitas Modern untuk Pendidikan Berkualitas</h1>
+                <p class="text-xl text-white text-shadow max-w-2xl">Kami menyediakan fasilitas lengkap dan modern untuk mendukung proses pembelajaran dan pengembangan potensi siswa.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Counter -->
+    <div class="bg-white dark:bg-gray-800 shadow-md -mt-16 relative z-10 max-w-6xl mx-auto rounded-xl overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200 dark:divide-gray-700">
+            <div class="p-8 text-center">
+                <div class="text-4xl font-bold text-primary">30+</div>
+                <div class="text-gray-600 dark:text-gray-300 mt-2">Ruang Kelas Modern</div>
+            </div>
+            <div class="p-8 text-center">
+                <div class="text-4xl font-bold text-primary">5</div>
+                <div class="text-gray-600 dark:text-gray-300 mt-2">Laboratorium Lengkap</div>
+            </div>
+            <div class="p-8 text-center">
+                <div class="text-4xl font-bold text-primary">10.000+</div>
+                <div class="text-gray-600 dark:text-gray-300 mt-2">Koleksi Buku</div>
+            </div>
+            <div class="p-8 text-center">
+                <div class="text-4xl font-bold text-primary">100%</div>
+                <div class="text-gray-600 dark:text-gray-300 mt-2">Akses Internet</div>
+            </div>
+        </div>
+    </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Overview Section -->
+        <section class="mb-16">
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Fasilitas <span class="text-primary">Terbaik</span> untuk Masa Depan Cerah</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Sekolah kami berkomitmen untuk menyediakan lingkungan belajar yang optimal dengan fasilitas modern dan lengkap. Kami percaya bahwa lingkungan belajar yang baik akan mendorong kreativitas, inovasi, dan prestasi siswa.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Semua fasilitas kami dirancang untuk mendukung pendekatan pembelajaran yang holistik, memadukan aspek akademis, olahraga, seni, dan pengembangan karakter.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#4F46E51A] text-[#4F46E5]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu-icon lucide-cpu"><path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg>
+                            </div>
+                            <span class="ml-3 text-gray-700 dark:text-gray-300">Teknologi Modern</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#0D94881A] text-[#0D9488]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                            </div>
+                            <span class="ml-3 text-gray-700 dark:text-gray-300">Lingkungan Aman</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#4755691A] text-[#475569]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase-icon lucide-briefcase"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
+                            </div>
+                            <span class="ml-3 text-gray-700 dark:text-gray-300">Staf Profesional</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="aspect-video bg-gray-300 rounded-xl overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=1472&auto=format&fit=crop" 
+                             alt="Perpustakaan Sekolah" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-accent rounded-lg flex items-center justify-center shadow-lg">
+                        <div class="text-center text-white">
+                            <div class="text-2xl font-bold">15+</div>
+                            <div class="text-sm">Tahun Berpengalaman</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kategori Fasilitas -->
+        <section id="fasilitas" class="mb-16 scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Kategori Fasilitas</h2>
+                <p class="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto">Kami menyediakan berbagai fasilitas untuk mendukung proses pembelajaran dan pengembangan potensi siswa secara menyeluruh.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Fasilitas Pembelajaran -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover-scale">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1470&auto=format&fit=crop" 
+                             alt="Fasilitas Pembelajaran" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-blue-100 dark:bg-blue-900 text-primary">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">Fasilitas Pembelajaran</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Ruang kelas modern, perpustakaan digital, dan laboratorium lengkap untuk mendukung proses belajar mengajar.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>30+ Ruang Kelas Ber-AC</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Perpustakaan Digital</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>5 Laboratorium Lengkap</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-2 px-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center">
+                            <span>Lihat Detail</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fasilitas Olahraga -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover-scale">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?q=80&w=1548&auto=format&fit=crop" 
+                             alt="Fasilitas Olahraga" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-blue-100 dark:bg-blue-900 text-primary">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">Fasilitas Olahraga</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Berbagai fasilitas olahraga indoor dan outdoor untuk mendukung aktivitas fisik dan prestasi olahraga siswa.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Lapangan Sepak Bola</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Indoor Gymnasium</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Kolam Renang Semi-Olimpik</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-2 px-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center">
+                            <span>Lihat Detail</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fasilitas Seni & Budaya -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover-scale">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522661067900-ab829854a57f?q=80&w=1470&auto=format&fit=crop" 
+                             alt="Fasilitas Seni dan Budaya" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-blue-100 dark:bg-blue-900 text-primary">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">Fasilitas Seni & Budaya</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Ruang dan peralatan untuk mengembangkan bakat seni, musik, dan budaya siswa secara optimal.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Studio Musik Lengkap</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Ruang Seni Rupa</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Auditorium 500 Kursi</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-2 px-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center">
+                            <span>Lihat Detail</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <!-- Fasilitas Teknologi -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover-scale">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/3">
+                            <img src="https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?q=80&w=1470&auto=format&fit=crop" 
+                                 alt="Fasilitas Teknologi" class="w-full h-full object-cover">
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center bg-blue-100 dark:bg-blue-900 text-primary">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">Fasilitas Teknologi</h3>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Infrastruktur teknologi modern untuk mendukung pembelajaran di era digital.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span>WiFi Kecepatan Tinggi</span>
+                                </li>
+                                <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span>Smart Classroom</span>
+                                </li>
+                                <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span>Sistem Informasi Akademik</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fasilitas Penunjang -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover-scale">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/3">
+                            <img src="https://images.unsplash.com/photo-1577896852618-01da1afc7f5c?q=80&w=1470&auto=format&fit=crop" 
+                                 alt="Fasilitas Penunjang" class="w-full h-full object-cover">
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center bg-blue-100 dark:bg-blue-900 text-primary">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <h3 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">Fasilitas Penunjang</h3>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Berbagai fasilitas untuk mendukung kenyamanan dan kesejahteraan seluruh warga sekolah.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span>Kantin Sehat</span>
+                                </li>
+                                <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span>Unit Kesehatan Sekolah</span>
+                                </li>
+                                <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span>Area Parkir Luas</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Galeri Fasilitas</h2>
+                <p class="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto">Lihat koleksi foto fasilitas sekolah kami yang lengkap dan modern.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="overflow-hidden rounded-lg shadow-md hover-scale">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=1472&auto=format&fit=crop" alt="Perpustakaan" class="w-full h-48 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md hover-scale">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1486&auto=format&fit=crop" alt="Laboratorium" class="w-full h-48 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md hover-scale">
+                    <img src="https://images.unsplash.com/photo-1577896852418-939cda8f2943?q=80&w=1470&auto=format&fit=crop" alt="Kantin" class="w-full h-48 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md hover-scale">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1470&auto=format&fit=crop" alt="Ruang Kelas" class="w-full h-48 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md hover-scale">
+                    <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?q=80&w=1548&auto=format&fit=crop" alt="Lapangan Olahraga" class="w-full h-48 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md hover-scale">
+                    <img src="https://images.unsplash.com/photo-1522661067900-ab829854a57f?q=80&w=1470&auto=format&fit=crop" alt="Studio Musik" class="w-full h-48 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md hover-scale">
+                    <img src="https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?q=80&w=1470&auto=format&fit=crop" alt="Lab Komputer" class="w-full h-48 object-cover">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md hover-scale">
+                    <img src="https://images.unsplash.com/photo-1577896852618-01da1afc7f5c?q=80&w=1470&auto=format&fit=crop" alt="UKS" class="w-full h-48 object-cover">
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <button class="px-6 py-3 bg-white dark:bg-gray-800 text-primary border border-primary font-medium rounded-lg shadow-md hover:bg-primary hover:text-white transition-colors">
+                    <span>Lihat Semua Foto</span>
+                    <i class="fas fa-images ml-2"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Testimonial Section -->
+        <section class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Apa Kata Mereka</h2>
+                <p class="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto">Pendapat siswa dan orang tua tentang fasilitas sekolah kami.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 hover-scale">
+                    <div class="flex justify-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6">"Fasilitas perpustakaan digital sangat membantu saya dalam mengerjakan tugas. Koleksi buku dan jurnal sangat lengkap, dan sistem peminjaman sangat efisien."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Testimonial" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="text-sm font-semibold text-gray-900 dark:text-white">Dewi Anggraini</h4>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Siswa Kelas XII</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 hover-scale">
+                    <div class="flex justify-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6">"Sebagai orang tua, saya sangat senang dengan fasilitas sekolah yang sangat lengkap dan modern. Anak saya sangat senang belajar di sekolah ini."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Testimonial" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="text-sm font-semibold text-gray-900 dark:text-white">Budi Santoso</h4>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Orang Tua Siswa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 hover-scale">
+                    <div class="flex justify-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6">"Fasilitas olahraga di sekolah ini sangat lengkap. Saya bisa mengembangkan bakat olahraga saya dengan optimal melalui program ekstrakurikuler."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Testimonial" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-3">
+                            <h4 class="text-sm font-semibold text-gray-900 dark:text-white">Reza Pratama</h4>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Siswa Kelas XI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+
+        <section class="py-16">
+          <h2 class="text-3xl font-bold text-center mb-10">
+            Frequently Asked Questions (FAQ)
+          </h2>
+          <div class="max-w-3xl mx-auto space-y-4">
+            <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
+              <summary class="font-semibold text-lg">
+                Apakah semua ruang kelas dilengkapi dengan AC?
+              </summary>
+              <p class="mt-2 text-gray-600">
+                Ya, semua ruang kelas di sekolah kami dilengkapi dengan AC untuk
+                menciptakan lingkungan belajar yang nyaman bagi siswa.
+              </p>
+            </details>
+            <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
+              <summary class="font-semibold text-lg">
+                Apakah perpustakaan bisa diakses setelah jam sekolah?
+              </summary>
+              <p class="mt-2 text-gray-600">
+                Ya, perpustakaan sekolah kami dapat diakses setelah jam sekolah
+                untuk kegiatan belajar mandiri. Siswa dapat memanfaatkan fasilitas
+                perpustakaan hingga pukul 17.00 WIB.
+              </p>
+            </details>
+              </p>
+            </details>
+            <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
+              <summary class="font-semibold text-lg">
+                Bagaimana akses internet di sekolah?
+              </summary>
+              <p class="mt-2 text-gray-600">
+                Sekolah kami menyediakan akses internet gratis di seluruh area
+                sekolah, termasuk ruang kelas, perpustakaan, dan area umum.
+                Siswa diharapkan menggunakan fasilitas ini untuk mendukung
+                kegiatan belajar mereka.
+              </p>
+            </details>
+            <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
+              <summary class="font-semibold text-lg">
+                Apakah orang tua dapat menggunakan fasilitas sekolah?
+              </summary>
+              <p class="mt-2 text-gray-600">
+                Ya, orang tua dapat menggunakan fasilitas sekolah, termasuk
+                perpustakaan dan area umum, selama jam buka sekolah. Kami
+                mendorong orang tua untuk terlibat dalam kegiatan sekolah dan
+                memanfaatkan fasilitas yang ada.
+              </p>
+            </details>
+          </div>
+        </section>
+        <!-- CTA Section -->
+        <section>
+            <div class="bg-gradient-to-r from-blue-700 to-red-600 rounded-2xl overflow-hidden">
+                <div class="px-6 py-12 md:p-12">
+                    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center">
+                        <div class="md:w-2/3 mb-8 md:mb-0 md:mr-8">
+                            <h2 class="text-3xl font-bold text-white mb-4">Ingin Melihat Fasilitas Kami Secara Langsung?</h2>
+                            <p class="text-white/90 mb-6">Jadwalkan kunjungan untuk melihat langsung fasilitas modern kami dan temukan lingkungan belajar yang ideal untuk putra-putri Anda.</p>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="#" class="px-6 py-3 bg-white text-primary font-medium rounded-lg shadow-md hover:bg-gray-100 transition-colors">
+                                    <span>Jadwalkan Kunjungan</span>
+                                    <i class="fas fa-calendar-alt ml-2"></i>
+                                </a>
+                                <a href="#" class="px-6 py-3 bg-transparent border-2 border-white text-white font-medium rounded-lg hover:bg-white hover:text-primary transition-colors">
+                                    <span>Hubungi Kami</span>
+                                    <i class="fas fa-phone-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="md:w-1/3">
+                            <img src="https://img.freepik.com/free-vector/cartoon-character-filling-online-form-computer-flat-illustration_74855-18384.jpg?w=826&t=st=1692345817~exp=1692346417~hmac=07e1d9f85a41751903eb49c717fce78a" alt="Jadwalkan Kunjungan" class="w-full">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+<div id="footer"></div>
+    </main>
+    <script src="/pages/script.js"></script>
+</body>
+</html>

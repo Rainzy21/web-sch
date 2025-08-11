@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="/pages/output.css" />
     
 
     <style>
@@ -54,7 +54,7 @@
 </head>
 <body>
     <div id="navbar-placeholder"></div>
-    <main class="container">
+    <main>
 
         <section class="text-center mb-16">
             <div class="w-full h-64 md:h-80 lg:h-96 bg-gray-300 rounded-lg overflow-hidden mb-6 shadow-lg">
@@ -157,32 +157,28 @@
             </div>
         </section>
 
-        <section class="mt-20 max-w-4xl mx-auto" x-data="{ openFaq: null }">
-             <h3 class="text-3xl font-bold text-center text-gray-700 mb-8">Pertanyaan Umum</h3>
-             <div class="space-y-4">
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
-                    <button @click="openFaq === 1 ? openFaq = null : openFaq = 1" class="w-full flex justify-between items-center text-left p-4 md:p-5 font-semibold text-gray-800">
-                        <span>Apa kurikulum yang digunakan oleh sekolah?</span>
-                        <svg class="w-6 h-6 transform transition-transform" :class="{ 'rotate-180': openFaq === 1 }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div x-show="openFaq === 1" x-transition class="px-4 md:px-5 pb-5 text-gray-600">
-                        <p>Sekolah kami mengimplementasikan Kurikulum Merdeka yang diperkaya dengan program-program unggulan internal kami. Kami memadukan standar nasional dengan pendekatan pembelajaran berbasis proyek dan pengembangan soft skills untuk menciptakan pengalaman belajar yang relevan dan komprehensif.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
-                    <button @click="openFaq === 2 ? openFaq = null : openFaq = 2" class="w-full flex justify-between items-center text-left p-4 md:p-5 font-semibold text-gray-800">
-                        <span>Bagaimana sekolah melibatkan orang tua dalam proses belajar?</span>
-                         <svg class="w-6 h-6 transform transition-transform" :class="{ 'rotate-180': openFaq === 2 }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div x-show="openFaq === 2" x-transition class="px-4 md:px-5 pb-5 text-gray-600">
-                         <p>Kami percaya kemitraan dengan orang tua adalah kunci. Kami secara rutin mengadakan pertemuan orang tua-guru, seminar parenting, serta menyediakan portal online di mana orang tua dapat memantau kemajuan akademik dan non-akademik anak secara berkala.</p>
-                    </div>
-                </div>
-             </div>
+        <section class="py-16">
+          <h2 class="text-3xl font-bold text-center mb-10">
+            Frequently Asked Questions (FAQ)
+          </h2>
+          <div class="max-w-3xl mx-auto space-y-4">
+            <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
+              <summary class="font-semibold text-lg">
+                Apa kurikulum yang digunakan oleh sekolah?
+              </summary>
+              <p class="mt-2 text-gray-600">
+                Sekolah kami mengimplementasikan Kurikulum Merdeka yang diperkaya dengan program-program unggulan internal kami. Kami memadukan standar nasional dengan pendekatan pembelajaran berbasis proyek dan pengembangan soft skills untuk menciptakan pengalaman belajar yang relevan dan komprehensif.
+              </p>
+            </details>
+            <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
+              <summary class="font-semibold text-lg">
+                Bagaimana sekolah melibatkan orang tua dalam proses belajar?
+              </summary>
+              <p class="mt-2 text-gray-600">
+                Kami percaya kemitraan dengan orang tua adalah kunci. Kami secara rutin mengadakan pertemuan orang tua-guru, seminar parenting, serta menyediakan portal online di mana orang tua dapat memantau kemajuan akademik dan non-akademik anak secara berkala.
+              </p>
+            </details>
+          </div>
         </section>
 
          <section class="mt-20 bg-sekolah-secondary/30 rounded-lg p-8">
