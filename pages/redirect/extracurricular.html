@@ -1,524 +1,926 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kurikulum</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    />
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ekstrakurikuler & Pengembangan Bakat</title>
+  <meta name="description" content="Jelajahi daftar lengkap kegiatan ekstrakurikuler: akademik, olahraga, seni, sains, organisasi, jadwal kegiatan, prestasi, pendaftaran, galeri dan FAQ." />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    nav {
+      font-family: 'Poppins', sans-serif;
+    }
+    :root {
+      --brand-primary:#2563eb;
+      --brand-accent:#f59e0b;
+      --grad-hero:linear-gradient(to right,rgba(0,0,0,.6),rgba(0,0,0,.25));
+    }
+    body { font-family:'Roboto',sans-serif; background:#f5f7fb; }
+    .heading-font { font-family:'Poppins',sans-serif; }
+    .hero-overlay::after {
+      content:""; position:absolute; inset:0; background:var(--grad-hero);
+    }
+    .chip {
+      @apply rounded-full border px-4 py-1.5 text-sm font-medium cursor-pointer transition;
+    }
+    .chip[data-active="true"] {
+      background: var(--brand-primary); color:#fff; border-color:var(--brand-primary);
+    }
+    .club-card {
+      transition: transform .4s cubic-bezier(.4,.08,0,1), box-shadow .4s;
+    }
+    .club-card:hover { transform:translateY(-6px); box-shadow:0 14px 28px -10px rgba(0,0,0,.28); }
+    .badge-soft {
+      background: rgba(37,99,235,.12);
+      color:#2563eb;
+      font-weight:500;
+      font-size:.65rem;
+      letter-spacing:.5px;
+      padding:.3rem .55rem;
+      border-radius:.5rem;
+      text-transform:uppercase;
+    }
+    .gallery-grid img {
+      aspect-ratio:1/1;
+      object-fit:cover;
+      transition:transform .4s, box-shadow .4s;
+      cursor:pointer;
+    }
+    .gallery-grid img:hover { transform:scale(1.04); box-shadow:0 8px 24px -6px rgba(0,0,0,.35); }
+    .timeline-line {
+      position:absolute; left:1rem; top:0; bottom:0; width:2px;
+      background:linear-gradient(to bottom,#60a5fa,#2563eb);
+    }
+    .timeline-item { position:relative; padding-left:3rem; margin-bottom:2rem; }
+    .timeline-item:before {
+      content:""; position:absolute; left:.75rem; top:.4rem;
+      width:15px; height:15px; background:#2563eb; border:2px solid #fff; border-radius:50%;
+      box-shadow:0 0 0 3px rgba(37,99,235,.3);
+    }
+    .focus-ring:focus-visible { outline:3px solid #2563eb; outline-offset:3px; border-radius:.5rem; }
+    .dark body { background:#1e242b; }
+    .dark .badge-soft { background:rgba(96,165,250,.18); color:#60a5fa; }
+    .stat-tile {
+      background:linear-gradient(135deg,#ffffff,#eef3ff);
+      border:1px solid #e5eaf2;
+      border-radius:1.1rem;
+      padding:1.3rem 1.2rem;
+      display:flex; gap:.9rem; align-items:flex-start;
+      position:relative;
+      overflow:hidden;
+    }
+    .stat-tile .icon {
+      width:42px; height:42px; display:grid; place-items:center;
+      background:#fff; border:1px solid #e1e7f0; border-radius:14px;
+      box-shadow:0 4px 12px -4px rgba(0,0,0,.15);
+    }
+    .dark .stat-tile { background:linear-gradient(135deg,#1d232a,#2a323c); border-color:#2f3942; }
+    .dark .stat-tile .icon { background:#1f262d; border-color:#333d47; }
+    .glass {
+      background:rgba(255,255,255,.65);
+      backdrop-filter:blur(14px);
+    }
+    dialog::backdrop {
+      background:rgba(15,23,42,.55);
+      backdrop-filter:blur(6px);
+    }
+    .load-indicator {
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:.35 }
+      50% { opacity:1 }
+    }
+    .slider {
+      overflow:hidden;
+      position:relative;
+    }
+    .slider-track {
+      display:flex;
+      gap:1.5rem;
+      transition:transform .6s cubic-bezier(.4,.08,0,1);
+    }
+    .testimonial {
+      min-width:100%;
+    }
+    @media(min-width:900px){
+      .testimonial { min-width:50%; }
+    }
+    .cta-gradient {
+      background:linear-gradient(120deg,#2563eb,#1d4ed8,#0ea5e9);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="navbar-placeholder"></div>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="/pages/output.css" />
-
-    <style>
-      body {
-        font-family: "Roboto", sans-serif; /* untuk isi artikel */
-      }
-      nav {
-        font-family: "Poppins", sans-serif; /* untuk judul */
-      }
-
-      /* Animasi slide in/out */
-      .drawer-side {
-        transition: transform 0.3s ease-in-out;
-      }
-      input[type="checkbox"]:not(:checked) ~ .drawer-side {
-        transform: translateX(-100%);
-      }
-
-      /* Gaya untuk link aktif di navbar */
-      .nav-link.active {
-        color: hsl(var(--p));
-        font-weight: bold;
-      }
-
-      /* Gaya hover untuk dropdown */
-      details summary {
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-      details summary:hover {
-        background-color: hsl(var(--b2));
-      }
-    </style>
-  </head>
-  <body>
-    <div id="navbar-placeholder"></div>
-    <main>
-      <div class="container mx-auto px-6 py-8">
-        <section
-          class="relative w-full h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-lg"
-        >
-          <!-- Gambar -->
-          <img
-            src="/assets/1.jpg"
-            alt="Banner Aktivitas Pembelajaran"
-            class="absolute inset-0 w-full h-full object-cover"
-          />
-
-          <!-- Teks -->
-          <div
-            class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-6"
-          >
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-md">
-              EKSTRAKURIKULER
-            </h1>
-            <p class="text-lg md:text-xl font-light drop-shadow-md">
-              Jelajahi dan Kembangkan Bakat &amp; Minat Siswa
-            </p>
+  <!-- HERO -->
+  <header class="relative h-[360px] md:h-[450px] lg:h-[520px] hero-overlay mb-16">
+    <img src="/assets/1.jpg" alt="Kegiatan siswa dalam berbagai ekstrakurikuler" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="relative z-10 h-full flex items-center">
+      <div class="max-w-7xl mx-auto px-6 w-full">
+        <div class="max-w-3xl space-y-6">
+          <h1 class="heading-font text-3xl md:text-5xl font-bold text-white leading-tight">
+            Ekstrakurikuler & Pengembangan Minat
+          </h1>
+          <p class="text-gray-200 text-base md:text-lg">
+            Ruang eksplorasi bakat, kepemimpinan, kolaborasi, kreativitas, dan karakter. Pilih jalur yang memperkaya perjalanan belajar Anda.
+          </p>
+          <div class="flex gap-3 flex-wrap">
+            <button id="btnScrollClubs" class="btn btn-primary btn-sm rounded-full px-6 focus-ring">Jelajahi Program</button>
+            <button id="openSearch" class="btn btn-neutral btn-sm rounded-full px-6 focus-ring">Cari Ekstrakurikuler</button>
           </div>
-        </section>
+        </div>
+      </div>
+    </div>
+  </header>
 
-        <section class="py-16">
-          <h2 class="text-3xl font-bold text-center mb-10">
-            Highlight Ekstrakurikuler Unggulan
-          </h2>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div
-              class="bg-white p-5 rounded-lg shadow-md text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-            >
-              <img
-                src="https://placeholder.com/150x150/1abc9c/ffffff?text=Ekskul+1"
-                alt="Robotik"
-                class="mx-auto rounded-full w-24 h-24 mb-4 object-cover border-4 border-gray-200"
-              />
-              <h3 class="font-bold text-lg">Robotik</h3>
-              <p class="text-sm text-gray-500">Juara Nasional</p>
-            </div>
-            <div
-              class="bg-white p-5 rounded-lg shadow-md text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-            >
-              <img
-                src="https://placeholder.com/150x150/e74c3c/ffffff?text=Ekskul+2"
-                alt="Basket"
-                class="mx-auto rounded-full w-24 h-24 mb-4 object-cover border-4 border-gray-200"
-              />
-              <h3 class="font-bold text-lg">Basket</h3>
-              <p class="text-sm text-gray-500">Tim Solid</p>
-            </div>
-            <div
-              class="bg-white p-5 rounded-lg shadow-md text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-            >
-              <img
-                src="https://placeholder.com/150x150/3498db/ffffff?text=Ekskul+3"
-                alt="Paskibra"
-                class="mx-auto rounded-full w-24 h-24 mb-4 object-cover border-4 border-gray-200"
-              />
-              <h3 class="font-bold text-lg">Paskibra</h3>
-              <p class="text-sm text-gray-500">Disiplin Tinggi</p>
-            </div>
-            <div
-              class="bg-white p-5 rounded-lg shadow-md text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-            >
-              <img
-                src="https://placeholder.com/150x150/f1c40f/ffffff?text=Ekskul+4"
-                alt="Seni Tari"
-                class="mx-auto rounded-full w-24 h-24 mb-4 object-cover border-4 border-gray-200"
-              />
-              <h3 class="font-bold text-lg">Seni Tari</h3>
-              <p class="text-sm text-gray-500">Kreativitas Budaya</p>
-            </div>
-          </div>
-        </section>
+  <main class="flex-1">
 
-        <section class="pb-10">
-          <h2 class="text-2xl font-bold mb-4">Filter Kategori</h2>
-          <div class="flex flex-wrap gap-3">
-            <button
-              class="px-5 py-2 bg-blue-600 text-white rounded-full font-semibold"
-            >
-              Semua
-            </button>
-            <button
-              class="px-5 py-2 bg-white border border-gray-300 text-gray-700 rounded-full hover:bg-gray-100 transition"
-            >
-              Akademik
-            </button>
-            <button
-              class="px-5 py-2 bg-white border border-gray-300 text-gray-700 rounded-full hover:bg-gray-100 transition"
-            >
-              Olahraga
-            </button>
-            <button
-              class="px-5 py-2 bg-white border border-gray-300 text-gray-700 rounded-full hover:bg-gray-100 transition"
-            >
-              Seni
-            </button>
-            <button
-              class="px-5 py-2 bg-white border border-gray-300 text-gray-700 rounded-full hover:bg-gray-100 transition"
-            >
-              Lainnya
-            </button>
+    <!-- HIGHLIGHT STAT -->
+    <section class="max-w-7xl mx-auto px-6 mb-20">
+      <h2 class="heading-font text-2xl md:text-3xl font-bold mb-8">Highlight Unggulan</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="stat-tile">
+          <div class="icon text-blue-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 14 4-4"/><path d="M12 8a4 4 0 1 0 4 4V4a4 4 0 1 0-8 0v8a4 4 0 0 0 4 4"/><path d="M8 14a4 4 0 0 0 8 0"/></svg>
           </div>
-        </section>
-
-        <section class="pb-16">
-          <h2 class="text-3xl font-bold mb-8">Daftar Ekstrakurikuler</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300"
-            >
-              <img
-                src="https://placeholder.com/400x250/5dade2/ffffff?text=Pramuka"
-                alt="Pramuka"
-                class="w-full h-48 object-cover"
-              />
-              <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">Pramuka</h3>
-                <ul class="text-gray-600 space-y-2 text-sm">
-                  <li class="flex items-center">
-                    <i
-                      class="h-4 w-4 text-blue-500 mr-2"
-                      data-hero="calendar-days"
-                    ></i>
-                    Jadwal: Jumat & Sabtu
-                  </li>
-                  <li class="flex items-center">
-                    <i class="h-4 w-4 text-blue-500 mr-2" data-hero="user"></i>
-                    Pembina: Kak Budi Hartono
-                  </li>
-                  <li class="flex items-center">
-                    <i
-                      class="h-4 w-4 text-blue-500 mr-2"
-                      data-hero="chart-bar"
-                    ></i>
-                    Level: Siaga - Penggalang
-                  </li>
-                </ul>
-                <button
-                  class="mt-6 w-full bg-blue-100 text-blue-700 font-semibold py-2 rounded-lg hover:bg-blue-200 transition duration-300"
-                >
-                  Lihat Detail
-                </button>
-              </div>
-            </div>
-            <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300"
-            >
-              <img
-                src="https://placeholder.com/400x250/af7ac5/ffffff?text=Paduan+Suara"
-                alt="Paduan Suara"
-                class="w-full h-48 object-cover"
-              />
-              <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">Paduan Suara</h3>
-                <ul class="text-gray-600 space-y-2 text-sm">
-                  <li class="flex items-center">
-                    <i
-                      class="h-4 w-4 text-blue-500 mr-2"
-                      data-hero="calendar-days"
-                    ></i>
-                    Jadwal: Selasa & Kamis
-                  </li>
-                  <li class="flex items-center">
-                    <i class="h-4 w-4 text-blue-500 mr-2" data-hero="user"></i>
-                    Pembina: Ibu Siti Lestari
-                  </li>
-                  <li class="flex items-center">
-                    <i
-                      class="h-4 w-4 text-blue-500 mr-2"
-                      data-hero="chart-bar"
-                    ></i>
-                    Level: Pemula - Mahir
-                  </li>
-                </ul>
-                <button
-                  class="mt-6 w-full bg-blue-100 text-blue-700 font-semibold py-2 rounded-lg hover:bg-blue-200 transition duration-300"
-                >
-                  Lihat Detail
-                </button>
-              </div>
-            </div>
-            <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300"
-            >
-              <img
-                src="https://placeholder.com/400x250/f5b041/ffffff?text=KIR"
-                alt="KIR"
-                class="w-full h-48 object-cover"
-              />
-              <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">
-                  Karya Ilmiah Remaja (KIR)
-                </h3>
-                <ul class="text-gray-600 space-y-2 text-sm">
-                  <li class="flex items-center">
-                    <i
-                      class="h-4 w-4 text-blue-500 mr-2"
-                      data-hero="calendar-days"
-                    ></i>
-                    Jadwal: Rabu
-                  </li>
-                  <li class="flex items-center">
-                    <i class="h-4 w-4 text-blue-500 mr-2" data-hero="user"></i>
-                    Pembina: Bapak Agus Setiawan
-                  </li>
-                  <li class="flex items-center">
-                    <i
-                      class="h-4 w-4 text-blue-500 mr-2"
-                      data-hero="chart-bar"
-                    ></i>
-                    Level: Semua Level
-                  </li>
-                </ul>
-                <button
-                  class="mt-6 w-full bg-blue-100 text-blue-700 font-semibold py-2 rounded-lg hover:bg-blue-200 transition duration-300"
-                >
-                  Lihat Detail
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="mt-12 text-center">
-            <button
-              class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-md"
-            >
-              Tampilkan Lebih Banyak
-            </button>
-          </div>
-        </section>
-
-        <section class="bg-white py-16 px-6 rounded-lg shadow-md">
-          <h2 class="text-3xl font-bold text-center mb-10">
-            Capaian & Prestasi Terbaru
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="p-6 border border-gray-200 rounded-lg hover:bg-gray-50">
-              <div
-                class="bg-green-100 text-green-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4"
-              >
-                <i class="h-8 w-8" data-hero="trophy"></i>
-              </div>
-              <h3 class="font-bold text-lg">Tim Robotik</h3>
-              <p class="text-gray-600">Juara 1 Nasional 2025</p>
-            </div>
-            <div class="p-6 border border-gray-200 rounded-lg hover:bg-gray-50">
-              <div
-                class="bg-yellow-100 text-yellow-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4"
-              >
-                <i class="h-8 w-8" data-hero="musical-note"></i>
-              </div>
-              <h3 class="font-bold text-lg">Paduan Suara</h3>
-              <p class="text-gray-600">Juara 2 Provinsi 2025</p>
-            </div>
-            <div class="p-6 border border-gray-200 rounded-lg hover:bg-gray-50">
-              <div
-                class="bg-red-100 text-red-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4"
-              >
-                <i class="h-8 w-8" data-hero="academic-cap"></i>
-              </div>
-              <h3 class="font-bold text-lg">Basket Putra</h3>
-              <p class="text-gray-600">Juara 1 Kabupaten 2025</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="py-16">
-          <h2 class="text-3xl font-bold text-center mb-10">Galeri Kegiatan</h2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            <img
-              src="https://placeholder.com/300x300/e67e22/ffffff"
-              alt="Galeri 1"
-              class="rounded-lg shadow-md hover:opacity-80 transition-opacity"
-            />
-            <img
-              src="https://placeholder.com/300x300/2ecc71/ffffff"
-              alt="Galeri 2"
-              class="rounded-lg shadow-md hover:opacity-80 transition-opacity"
-            />
-            <img
-              src="https://placeholder.com/300x300/9b59b6/ffffff"
-              alt="Galeri 3"
-              class="rounded-lg shadow-md hover:opacity-80 transition-opacity"
-            />
-            <img
-              src="https://placeholder.com/300x300/34495e/ffffff"
-              alt="Galeri 4"
-              class="rounded-lg shadow-md hover:opacity-80 transition-opacity"
-            />
-            <img
-              src="https://placeholder.com/300x300/16a085/ffffff"
-              alt="Galeri 5"
-              class="rounded-lg shadow-md hover:opacity-80 transition-opacity"
-            />
-            <img
-              src="https://placeholder.com/300x300/c0392b/ffffff"
-              alt="Galeri 6"
-              class="rounded-lg shadow-md hover:opacity-80 transition-opacity"
-            />
-          </div>
-          <div class="text-center mt-8">
-            <button
-              class="border-2 border-blue-500 text-blue-500 font-semibold px-6 py-2 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-300"
-            >
-              Lihat Semua Galeri
-            </button>
-          </div>
-        </section>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 py-16">
-          <div class="space-y-12">
-            <div class="bg-white p-8 rounded-lg shadow-md">
-              <h3 class="text-2xl font-bold mb-6">Jadwal Kegiatan Mendatang</h3>
-              <ul class="space-y-4 text-gray-700">
-                <li class="flex items-start">
-                  <i
-                    class="h-5 w-5 text-blue-500 mr-3 mt-1"
-                    data-hero="calendar-days"
-                  ></i
-                  ><span
-                    ><strong class="font-semibold">15 Agustus 2025:</strong>
-                    Perlombaan Robotik Internal</span
-                  >
-                </li>
-                <li class="flex items-start">
-                  <i
-                    class="h-5 w-5 text-blue-500 mr-3 mt-1"
-                    data-hero="calendar-days"
-                  ></i
-                  ><span
-                    ><strong class="font-semibold">20 Agustus 2025:</strong>
-                    Festival Seni Tahunan</span
-                  >
-                </li>
-                <li class="flex items-start">
-                  <i
-                    class="h-5 w-5 text-blue-500 mr-3 mt-1"
-                    data-hero="calendar-days"
-                  ></i
-                  ><span
-                    ><strong class="font-semibold">25 Agustus 2025:</strong>
-                    Pertandingan Basket Persahabatan</span
-                  >
-                </li>
-                <li class="flex items-start">
-                  <i
-                    class="h-5 w-5 text-blue-500 mr-3 mt-1"
-                    data-hero="calendar-days"
-                  ></i
-                  ><span
-                    ><strong class="font-semibold">01 September 2025:</strong>
-                    Pendaftaran Anggota Baru Dibuka</span
-                  >
-                </li>
-              </ul>
-            </div>
-
-            <div
-              class="bg-blue-600 text-white p-8 rounded-lg shadow-lg text-center"
-            >
-              <h3 class="text-2xl font-bold mb-2">Informasi Pendaftaran</h3>
-              <p>Periode Pendaftaran Semester Ganjil 2025/2026</p>
-              <p class="text-3xl font-bold my-4">1 - 30 September 2025</p>
-              <button
-                class="bg-white text-blue-600 font-bold px-8 py-3 rounded-full hover:bg-gray-200 transition-colors"
-              >
-                Panduan Pendaftaran
-              </button>
-              <p class="text-xs mt-4 text-blue-100">
-                * Pendaftaran hanya untuk siswa terdaftar di Sekolah XYZ.
-              </p>
-            </div>
-          </div>
-
           <div>
-            <h2 class="text-3xl font-bold mb-8">Testimonial</h2>
-            <div class="space-y-8">
-              <div
-                class="bg-white p-6 rounded-lg shadow-md flex items-start space-x-4"
-              >
-                <img
-                  src="https://placeholder.com/80x80/7d3c98/ffffff?text=Siswa+A"
-                  alt="Foto Siswa"
-                  class="w-16 h-16 rounded-full flex-shrink-0 object-cover"
-                />
-                <div>
-                  <p class="text-gray-600 italic">
-                    "Mengikuti ekskul robotik benar-benar membuka wawasan saya.
-                    Saya belajar banyak tentang programming dan kerja tim!"
-                  </p>
-                  <p class="mt-4 font-bold">- Andi Pratama</p>
-                  <p class="text-sm text-gray-500">Kelas XI IPA 1</p>
-                </div>
+            <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Partisipasi Siswa</p>
+            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">87%</p>
+            <p class="text-[11px] text-gray-500 leading-tight">Aktif minimal 1 ekskul</p>
+          </div>
+        </div>
+        <div class="stat-tile">
+          <div class="icon text-amber-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 17V3M5 10l7-7 7 7"/><path d="m19 15-7 7-7-7"/></svg>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Prestasi 12 Bulan</p>
+            <p class="text-2xl font-bold text-amber-600 dark:text-amber-400">52</p>
+            <p class="text-[11px] text-gray-500">Tingkat Kab - Nasional</p>
+          </div>
+        </div>
+        <div class="stat-tile">
+          <div class="icon text-emerald-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Program Aktif</p>
+            <p class="text-2xl font-bold text-emerald-600 dark:text-emerald-400" id="statProgramCount">--</p>
+            <p class="text-[11px] text-gray-500">Kategori lintas minat</p>
+          </div>
+        </div>
+        <div class="stat-tile">
+          <div class="icon text-fuchsia-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 17.5 5 21l1.5-7L2 9l7-.8L12 2l3 6.2 7 .8-4.5 5 1.5 7z"/></svg>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Kepuasan Peserta</p>
+            <p class="text-2xl font-bold text-fuchsia-600 dark:text-fuchsia-400">4.7</p>
+            <p class="text-[11px] text-gray-500">Skala 1–5 survei internal</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTER + SEARCH -->
+    <section id="clubs" class="max-w-7xl mx-auto px-6 mb-8">
+      <div class="flex flex-col lg:flex-row lg:items-end gap-6 mb-6">
+        <div class="flex-1">
+          <h2 class="heading-font text-2xl md:text-3xl font-bold mb-2">Daftar Ekstrakurikuler</h2>
+          <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base">
+            Gunakan filter kategori atau kotak pencarian untuk menemukan program yang sesuai minat dan jadwal Anda.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 items-center">
+          <div id="categoryChips" class="flex flex-wrap gap-2"></div>
+          <div class="relative">
+            <input id="searchInput" type="search" placeholder="Cari nama / pembina..." class="input input-sm input-bordered rounded-full pl-9 w-52 md:w-64 focus:ring-1 focus:ring-primary" />
+            <span class="absolute left-3 top-1.5 text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div id="clubCards" class="grid gap-8 md:grid-cols-2 xl:grid-cols-3"></div>
+      <div id="loadMoreWrap" class="mt-10 text-center hidden">
+        <button id="loadMoreBtn" class="btn btn-primary btn-sm rounded-full px-8">Tampilkan Lebih Banyak</button>
+      </div>
+    </section>
+
+    <!-- PRESTASI -->
+    <section class="max-w-7xl mx-auto px-6 mb-24">
+      <div class="bg-white dark:bg-base-200 rounded-3xl p-10 shadow-xl">
+        <h2 class="heading-font text-2xl md:text-3xl font-bold text-center mb-12">Capaian & Prestasi Terbaru</h2>
+        <div class="grid gap-8 md:grid-cols-3">
+          <div class="text-center p-6 rounded-xl border border-gray-100 dark:border-base-300 hover:shadow-md transition">
+            <div class="w-20 h-20 rounded-full mx-auto mb-4 bg-emerald-100 text-emerald-600 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 17.5 5 21l1.5-7L2 9l7-.8L12 2l3 6.2 7 .8-4.5 5 1.5 7z"/></svg>
+            </div>
+            <h3 class="font-semibold">Tim Robotik</h3>
+            <p class="text-sm text-gray-500">Juara 1 Nasional 2025</p>
+          </div>
+          <div class="text-center p-6 rounded-xl border border-gray-100 dark:border-base-300 hover:shadow-md transition">
+            <div class="w-20 h-20 rounded-full mx-auto mb-4 bg-amber-100 text-amber-500 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8h14M5 16h14"/></svg>
+            </div>
+            <h3 class="font-semibold">Paduan Suara</h3>
+            <p class="text-sm text-gray-500">Juara 2 Provinsi 2025</p>
+          </div>
+            <div class="text-center p-6 rounded-xl border border-gray-100 dark:border-base-300 hover:shadow-md transition">
+              <div class="w-20 h-20 rounded-full mx-auto mb-4 bg-rose-100 text-rose-600 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v18"/><path d="M4 8h10a4 4 0 0 1 0 8H4"/></svg>
               </div>
-              <div
-                class="bg-white p-6 rounded-lg shadow-md flex items-start space-x-4"
-              >
-                <img
-                  src="https://placeholder.com/80x80/28b463/ffffff?text=Siswa+B"
-                  alt="Foto Siswa"
-                  class="w-16 h-16 rounded-full flex-shrink-0 object-cover"
-                />
-                <div>
-                  <p class="text-gray-600 italic">
-                    "Paduan suara bukan hanya soal menyanyi, tapi juga membangun
-                    rasa percaya diri dan persahabatan. Pengalaman yang tak
-                    terlupakan."
-                  </p>
-                  <p class="mt-4 font-bold">- Citra Dewi</p>
-                  <p class="text-sm text-gray-500">Kelas X-3</p>
-                </div>
+              <h3 class="font-semibold">Basket Putra</h3>
+              <p class="text-sm text-gray-500">Juara 1 Kabupaten 2025</p>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERI -->
+    <section class="max-w-7xl mx-auto px-6 mb-24">
+      <div class="flex flex-col md:flex-row md:items-center gap-4 mb-8">
+        <h2 class="heading-font text-2xl md:text-3xl font-bold flex-1">Galeri Kegiatan</h2>
+        <button class="btn btn-outline btn-sm rounded-full" id="viewAllGallery">Lihat Semua Galeri</button>
+      </div>
+      <div class="gallery-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4" id="galleryGrid">
+        <!-- gallery items inserted by JS -->
+      </div>
+    </section>
+
+    <!-- JADWAL & PENDAFTARAN + TESTIMONIAL -->
+    <section class="max-w-7xl mx-auto px-6 mb-28">
+      <div class="grid lg:grid-cols-2 gap-14">
+        <div class="space-y-12">
+          <div class="bg-white dark:bg-base-200 rounded-2xl p-8 shadow">
+            <h3 class="heading-font text-xl md:text-2xl font-bold mb-6">Jadwal Kegiatan Mendatang</h3>
+            <div class="relative pl-2">
+              <div class="timeline-line"></div>
+              <div class="timeline-item">
+                <h4 class="font-semibold">15 Agustus 2025 - Robotik Internal</h4>
+                <p class="text-xs text-gray-500">Seleksi & uji prototipe</p>
+              </div>
+              <div class="timeline-item">
+                <h4 class="font-semibold">20 Agustus 2025 - Festival Seni</h4>
+                <p class="text-xs text-gray-500">Pertunjukan musik & tari</p>
+              </div>
+              <div class="timeline-item">
+                <h4 class="font-semibold">25 Agustus 2025 - Basket Persahabatan</h4>
+                <p class="text-xs text-gray-500">Scrimmage antar sekolah</p>
+              </div>
+              <div class="timeline-item">
+                <h4 class="font-semibold">1 September 2025 - Pendaftaran Baru</h4>
+                <p class="text-xs text-gray-500">Form online dibuka</p>
               </div>
             </div>
+          </div>
+
+          <div class="cta-gradient text-white p-8 md:p-10 rounded-3xl shadow-xl relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 pointer-events-none" style="background:url('data:image/svg+xml;utf8,<svg width=400 height=400 xmlns=http://www.w3.org/2000/svg><circle cx=200 cy=200 r=180 stroke=%23fff stroke-width=1 fill=none opacity=.5 /></svg>') center/cover no-repeat;"></div>
+            <h3 class="heading-font text-2xl font-bold mb-3">Informasi Pendaftaran</h3>
+            <p class="text-sm opacity-90">Periode Ganjil 2025 / 2026</p>
+            <p class="text-3xl md:text-4xl font-extrabold my-5 tracking-tight">1 - 30 September 2025</p>
+            <div class="flex flex-wrap gap-4">
+              <button id="openGuide" class="btn btn-white btn-sm text-blue-600 font-semibold rounded-full px-6">Panduan Pendaftaran</button>
+              <button id="openRegForm" class="btn btn-neutral btn-sm rounded-full px-6">Form Minat</button>
+            </div>
+            <p class="text-[11px] mt-5 opacity-80">* Khusus siswa terdaftar. Pastikan tidak bentrok dengan jadwal akademik.</p>
           </div>
         </div>
 
-        <section class="py-16">
-          <h2 class="text-3xl font-bold text-center mb-10">
-            Frequently Asked Questions (FAQ)
-          </h2>
-          <div class="max-w-3xl mx-auto space-y-4">
-            <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
-              <summary class="font-semibold text-lg">
-                Bagaimana cara bergabung dengan ekstrakurikuler?
-              </summary>
-              <p class="mt-2 text-gray-600">
-                Pendaftaran dibuka setiap awal semester melalui formulir online
-                yang akan dibagikan oleh wali kelas. Pastikan untuk memantau
-                pengumuman di mading sekolah dan website.
-              </p>
-            </details>
-            <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
-              <summary class="font-semibold text-lg">
-                Apakah ada biaya untuk bergabung?
-              </summary>
-              <p class="mt-2 text-gray-600">
-                Sebagian besar ekstrakurikuler gratis. Namun, beberapa kegiatan
-                yang memerlukan peralatan khusus atau mengikuti kompetisi di
-                luar mungkin akan ada iuran anggota yang disepakati bersama.
-              </p>
-            </details>
-            <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
-              <summary class="font-semibold text-lg">
-                Bolehkah mengikuti lebih dari satu ekstrakurikuler?
-              </summary>
-              <p class="mt-2 text-gray-600">
-                Siswa diperbolehkan mengikuti maksimal 2 (dua) ekstrakurikuler,
-                dengan syarat jadwal kegiatan tidak bentrok dan siswa dapat
-                mengatur waktu dengan baik agar tidak mengganggu kegiatan
-                akademik.
-              </p>
-            </details>
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="heading-font text-2xl font-bold">Testimonial Peserta</h2>
+            <div class="flex gap-2">
+              <button id="prevTesti" class="btn btn-xs rounded-full">‹</button>
+              <button id="nextTesti" class="btn btn-xs rounded-full">›</button>
+            </div>
           </div>
-        </section>
+          <div class="slider" id="testimonialSlider" aria-live="polite">
+            <div class="slider-track" id="testimonialTrack">
+              <!-- testimonials inserted -->
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div id="footer"></div>
-    </main>
-    <script src="/pages/script.js"></script>
-  </body>
+    <!-- FAQ -->
+    <section id="faq" class="max-w-5xl mx-auto px-6 mb-24">
+      <h2 class="heading-font text-3xl font-bold text-center mb-10">Frequently Asked Questions (FAQ)</h2>
+      <div class="space-y-4">
+        <details class="group bg-white dark:bg-base-200 p-5 rounded-xl shadow">
+          <summary class="cursor-pointer font-medium flex items-center justify-between">
+            <span> Bagaimana cara bergabung dengan ekstrakurikuler? </span>
+            <span class="transition group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-60" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <div class="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Pendaftaran dibuka setiap awal semester melalui portal siswa & formulir digital yang diumumkan wali kelas. Cek notifikasi aplikasi & papan pengumuman.
+          </div>
+        </details>
+        <details class="group bg-white dark:bg-base-200 p-5 rounded-xl shadow">
+          <summary class="cursor-pointer font-medium flex items-center justify-between">
+            <span> Apakah ada biaya untuk bergabung? </span>
+            <span class="transition group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-60" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <div class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+            Mayoritas gratis. Ekskul tertentu (robotik, panahan, kompetisi eksternal) mungkin memerlukan iuran alat / keikutsertaan sesuai kesepakatan.
+          </div>
+        </details>
+        <details class="group bg-white dark:bg-base-200 p-5 rounded-xl shadow">
+          <summary class="cursor-pointer font-medium flex items-center justify-between">
+            <span> Bolehkah mengikuti lebih dari satu ekstrakurikuler? </span>
+            <span class="transition group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-60" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <div class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+            Maksimal 2 ekskul aktif selama jadwal tidak bentrok dan performa akademik terjaga (monitoring rapor tengah semester).
+          </div>
+        </details>
+        <details class="group bg-white dark:bg-base-200 p-5 rounded-xl shadow">
+          <summary class="cursor-pointer font-medium flex items-center justify-between">
+            <span> Bagaimana evaluasi keaktifan peserta? </span>
+            <span class="transition group-open:rotate-180"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-60" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <div class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+            Presensi minimal 75%, keterlibatan proyek / event, kontribusi tim, dan refleksi triwulan menjadi indikator utama.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA FORM -->
+    <section class="max-w-6xl mx-auto px-6 mb-32">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div class="space-y-6">
+          <h3 class="heading-font text-2xl md:text-3xl font-bold">Masih Punya Pertanyaan?</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Hubungi tim pembina untuk diskusi program, rekomendasi ekskul sesuai minat, atau informasi khusus (kompetisi, kolaborasi, sponsorship).
+            </p>
+            <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+              <li class="flex gap-2 items-start"><span class="text-blue-600 mt-0.5">•</span> Konsultasi penentuan ekskul awal semester.</li>
+              <li class="flex gap-2 items-start"><span class="text-blue-600 mt-0.5">•</span> Pemantauan keseimbangan akademik & kegiatan.</li>
+              <li class="flex gap-2 items-start"><span class="text-blue-600 mt-0.5">•</span> Rekomendasi partisipasi lomba eksternal.</li>
+            </ul>
+            <div class="flex gap-4 flex-wrap">
+              <a href="/kontak" class="btn btn-primary btn-sm rounded-full px-7">Kontak Pembina</a>
+              <a href="#clubs" class="btn btn-outline btn-sm rounded-full px-7">Lihat Daftar</a>
+            </div>
+        </div>
+        <div class="bg-white dark:bg-base-200 p-8 rounded-3xl shadow-xl">
+          <h4 class="heading-font font-semibold text-lg mb-4">Form Pertanyaan Singkat</h4>
+          <form id="questionForm" class="space-y-4">
+            <div>
+              <label class="label-text text-sm font-medium">Nama</label>
+              <input required type="text" class="input input-sm input-bordered w-full rounded-md" placeholder="Nama Lengkap" />
+            </div>
+            <div>
+              <label class="label-text text-sm font-medium">Email</label>
+              <input required type="email" class="input input-sm input-bordered w-full rounded-md" placeholder="email@domain.com" />
+            </div>
+            <div>
+              <label class="label-text text-sm font-medium">Ekskul Minat (opsional)</label>
+              <input type="text" class="input input-sm input-bordered w-full rounded-md" placeholder="Contoh: Robotik / Paduan Suara" />
+            </div>
+            <div>
+              <label class="label-text text-sm font-medium">Pesan</label>
+              <textarea required rows="4" class="textarea textarea-bordered w-full text-sm rounded-md" placeholder="Tulis pertanyaan atau kebutuhan informasi..."></textarea>
+            </div>
+            <button class="btn btn-primary btn-sm w-full rounded-full">Kirim</button>
+            <p class="text-[11px] text-gray-500">Dengan mengirim, Anda menyetujui kebijakan privasi kami.</p>
+          </form>
+          <div id="formSuccess" class="hidden mt-4 text-sm p-3 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">
+            Terima kasih! Pertanyaan Anda telah diterima. Kami akan merespons via email.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer"></div>
+
+  <!-- MODALS -->
+  <dialog id="clubDetailDialog" class="modal">
+    <div class="modal-box max-w-2xl">
+      <h3 id="clubTitle" class="font-bold text-lg mb-2"></h3>
+      <p id="clubDescription" class="text-sm text-gray-600 dark:text-gray-400 mb-4"></p>
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-base-100/70 dark:bg-base-300 rounded-lg p-4">
+          <p class="text-xs uppercase tracking-wide text-gray-500 mb-1">Kategori</p>
+          <p id="clubCategory" class="text-sm font-medium"></p>
+        </div>
+        <div class="bg-base-100/70 dark:bg-base-300 rounded-lg p-4">
+          <p class="text-xs uppercase tracking-wide text-gray-500 mb-1">Pembina</p>
+          <p id="clubMentor" class="text-sm font-medium"></p>
+        </div>
+        <div class="bg-base-100/70 dark:bg-base-300 rounded-lg p-4">
+          <p class="text-xs uppercase tracking-wide text-gray-500 mb-1">Jadwal</p>
+          <p id="clubSchedule" class="text-sm font-medium"></p>
+        </div>
+        <div class="bg-base-100/70 dark:bg-base-300 rounded-lg p-4">
+          <p class="text-xs uppercase tracking-wide text-gray-500 mb-1">Level</p>
+            <p id="clubLevel" class="text-sm font-medium"></p>
+        </div>
+      </div>
+      <h4 class="font-semibold mb-2">Fokus Kegiatan</h4>
+      <ul id="clubFocusList" class="list-disc list-inside text-sm space-y-1 mb-6"></ul>
+      <div class="modal-action">
+        <form method="dialog">
+          <button class="btn btn-sm">Tutup</button>
+        </form>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button aria-label="Tutup detail"></button>
+    </form>
+  </dialog>
+
+  <dialog id="guideDialog" class="modal">
+    <div class="modal-box max-w-xl">
+      <h3 class="font-bold text-lg mb-4">Panduan Pendaftaran Ekskul</h3>
+      <ol class="list-decimal ml-4 space-y-2 text-sm">
+        <li>Buka portal siswa & pilih menu Ekstrakurikuler &gt; Pendaftaran.</li>
+        <li>Pilih maksimal dua program (pastikan jadwal tidak bentrok).</li>
+        <li>Isi motivasi singkat dan pengalaman sebelumnya (jika ada).</li>
+        <li>Unggah lampiran (sertifikat / portofolio) opsional.</li>
+        <li>Kirim dan pantau status (diterima / daftar tunggu).</li>
+      </ol>
+      <p class="text-xs text-gray-500 mt-4">Catatan: Perubahan pilihan hanya diperbolehkan sebelum minggu kedua.</p>
+      <div class="modal-action"><form method="dialog"><button class="btn btn-sm">Tutup</button></form></div>
+    </div>
+    <form method="dialog" class="modal-backdrop"><button aria-label="Tutup panduan"></button></form>
+  </dialog>
+
+  <dialog id="registerDialog" class="modal">
+    <div class="modal-box max-w-md">
+      <h3 class="font-bold text-lg mb-4">Form Minat Ekstrakurikuler</h3>
+      <form id="miniRegForm" class="space-y-4">
+        <div>
+          <label class="label-text text-xs">Nama</label>
+          <input required type="text" class="input input-sm input-bordered w-full" />
+        </div>
+        <div>
+          <label class="label-text text-xs">Ekskul Pilihan 1</label>
+          <select required class="select select-sm select-bordered w-full" id="choice1"></select>
+        </div>
+        <div>
+          <label class="label-text text-xs">Ekskul Pilihan 2 (opsional)</label>
+          <select class="select select-sm select-bordered w-full" id="choice2"></select>
+        </div>
+        <div>
+          <label class="label-text text-xs">Alasan Bergabung</label>
+          <textarea rows="3" required class="textarea textarea-bordered text-sm w-full"></textarea>
+        </div>
+        <button class="btn btn-primary btn-sm w-full">Kirim Minat</button>
+        <p class="text-[10px] text-gray-500">Ini bukan konfirmasi final. Hasil verifikasi akan diinformasikan melalui portal siswa.</p>
+      </form>
+      <div id="miniRegSuccess" class="hidden mt-4 text-xs bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-md p-2">
+        Permintaan minat berhasil dikirim.
+      </div>
+      <div class="modal-action">
+        <form method="dialog"><button class="btn btn-sm">Tutup</button></form>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop"><button aria-label="Tutup form minat"></button></form>
+  </dialog>
+
+  <dialog id="searchDialog" class="modal">
+    <div class="modal-box max-w-lg">
+      <h3 class="font-bold text-lg mb-4">Pencarian Cepat Ekskul</h3>
+      <input id="globalSearch" type="search" placeholder="Ketik nama ekskul / pembina..." class="input input-bordered w-full mb-4" />
+      <ul id="searchResults" class="max-h-72 overflow-auto divide-y divide-base-300 text-sm"></ul>
+      <div class="modal-action">
+        <form method="dialog"><button class="btn btn-sm">Tutup</button></form>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop"><button aria-label="Tutup pencarian"></button></form>
+  </dialog>
+
+  <!-- LIGHTBOX -->
+  <dialog id="lightbox" class="modal">
+    <div class="modal-box p-0 max-w-4xl overflow-hidden">
+      <img id="lightboxImg" src="" alt="Galeri kegiatan" class="w-full h-[520px] object-contain bg-black" />
+      <div class="p-4 flex justify-between items-center text-xs">
+        <span id="lightboxCaption" class="font-medium"></span>
+        <form method="dialog"><button class="btn btn-xs">Tutup</button></form>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop"><button aria-label="Tutup gambar"></button></form>
+  </dialog>
+
+  <script>
+    // THEME
+    const themeToggle = document.getElementById('themeToggle');
+    function setTheme(mode){
+      document.documentElement.setAttribute('data-theme', mode);
+      document.documentElement.classList.toggle('dark', mode==='dark');
+      themeToggle.textContent='Tema: '+(mode==='dark'?'Dark':'Light');
+      themeToggle.setAttribute('aria-pressed', mode==='dark');
+      localStorage.setItem('theme',mode);
+    }
+    setTheme(localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light'));
+    themeToggle.addEventListener('click', ()=> {
+      setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+    });
+
+    // DATA EKSKUL
+    const clubData = [
+      {
+        id:'robotik',
+        nama:'Robotik',
+        kategori:'Sains & Teknologi',
+        pembina:'Kak Budi Hartono',
+        jadwal:'Selasa & Kamis 15:30',
+        level:'Pemula - Lanjut',
+        capaian:'Juara Nasional',
+        img:'https://placeholder.com/400x250/1abc9c/ffffff?text=Robotik',
+        highlight:['Programming dasar microcontroller','Desain & optimalisasi robot','Persiapan lomba','Kolaborasi tim teknis'],
+        deskripsi:'Ekskul yang mengembangkan keterampilan desain mekanik, elektronika dasar, pemrograman, dan inovasi problem solving berbasis teknologi.'
+      },
+      {
+        id:'basket',
+        nama:'Basket',
+        kategori:'Olahraga',
+        pembina:'Coach Damar',
+        jadwal:'Senin & Rabu 16:00',
+        level:'Seleksi',
+        capaian:'Tim Solid',
+        img:'https://placeholder.com/400x250/e74c3c/ffffff?text=Basket',
+        highlight:['Fundamental skill & strategy','Latihan fisik & mental','Scrimmage antar sekolah','Kompetisi daerah'],
+        deskripsi:'Mengasah koordinasi, kerjasama, disiplin, dan ketahanan fisik melalui latihan terstruktur dan pertandingan persahabatan.'
+      },
+      {
+        id:'paskibra',
+        nama:'Paskibra',
+        kategori:'Kepemimpinan',
+        pembina:'Pak Ridwan',
+        jadwal:'Jumat 15:00 & Sabtu 08:00',
+        level:'Siaga - Penggalang',
+        capaian:'Disiplin Tinggi',
+        img:'https://placeholder.com/400x250/3498db/ffffff?text=Paskibra',
+        highlight:['Latihan baris berbaris','Pembentukan karakter & disiplin','Upacara resmi','Pelatihan kepemimpinan'],
+        deskripsi:'Ekskul pembinaan karakter, nasionalisme, dan kepemimpinan melalui latihan kedisiplinan dan protokol upacara.'
+      },
+      {
+        id:'tari',
+        nama:'Seni Tari',
+        kategori:'Seni & Budaya',
+        pembina:'Ibu Diah Lestari',
+        jadwal:'Rabu & Kamis 15:30',
+        level:'Terbuka',
+        capaian:'Kreativitas Budaya',
+        img:'https://placeholder.com/400x250/f1c40f/ffffff?text=Seni+Tari',
+        highlight:['Eksplorasi tari tradisional','Kreasi koreografi modern','Pertunjukan festival','Ekspresi artistik'],
+        deskripsi:'Menggabungkan pemahaman budaya dan kreativitas koreografi untuk melestarikan sekaligus memodernisasi ragam tari Nusantara.'
+      },
+      {
+        id:'padus',
+        nama:'Paduan Suara',
+        kategori:'Seni & Budaya',
+        pembina:'Ibu Siti Lestari',
+        jadwal:'Selasa & Kamis 15:30',
+        level:'Pemula - Mahir',
+        capaian:'Juara Provinsi',
+        img:'https://placeholder.com/400x250/af7ac5/ffffff?text=Paduan+Suara',
+        highlight:['Teknik pernapasan & vokal','Harmonisasi kelompok','Repertoar multi-genre','Konser internal/eksternal'],
+        deskripsi:'Melatih teknik vokal, harmoni, pendengaran musik, serta kepercayaan diri lewat penampilan panggung.'
+      },
+      {
+        id:'kir',
+        nama:'Karya Ilmiah Remaja (KIR)',
+        kategori:'Akademik & Riset',
+        pembina:'Bapak Agus Setiawan',
+        jadwal:'Rabu 15:30',
+        level:'Semua Level',
+        capaian:'Riset Kreatif',
+        img:'https://placeholder.com/400x250/f5b041/ffffff?text=KIR',
+        highlight:['Metode penelitian dasar','Analisis data sederhana','Penyusunan laporan ilmiah','Presentasi & publikasi'],
+        deskripsi:'Wadah pengembangan kemampuan berpikir kritis, eksplorasi sains-sosial, dokumentasi & presentasi penelitian.'
+      },
+      {
+        id:'fotografi',
+        nama:'Fotografi',
+        kategori:'Seni & Budaya',
+        pembina:'Mas Raka',
+        jadwal:'Jumat 15:30',
+        level:'Terbuka',
+        capaian:'Portofolio Visual',
+        img:'https://placeholder.com/400x250/2ecc71/ffffff?text=Foto',
+        highlight:['Komposisi & pencahayaan','Editing dasar','Fotografi event','Portfolio building'],
+        deskripsi:'Ekskul visual kreatif memadukan teknis kamera & storytelling visual untuk dokumentasi kegiatan.'
+      },
+      {
+        id:'coding',
+        nama:'Coding Club',
+        kategori:'Sains & Teknologi',
+        pembina:'Bu Intan',
+        jadwal:'Senin 15:30',
+        level:'Pemula - Lanjut',
+        capaian:'Aplikasi Mini',
+        img:'https://placeholder.com/400x250/9b59b6/ffffff?text=Coding',
+        highlight:['Logika pemrograman','Proyek aplikasi sederhana','Git & kolaborasi','Pengantar AI'],
+        deskripsi:'Belajar konsep dasar sampai pembuatan aplikasi mini dengan pendekatan project-based & peer review.'
+      },
+      {
+        id:'debat',
+        nama:'Debat Bahasa',
+        kategori:'Akademik & Riset',
+        pembina:'Mr. Steven',
+        jadwal:'Kamis 16:00',
+        level:'Intermediate',
+        capaian:'Kompetisi Regional',
+        img:'https://placeholder.com/400x250/34495e/ffffff?text=Debat',
+        highlight:['Argumentasi logis','Public speaking & retorika','Refutasi efektif','Simulasi turnamen'],
+        deskripsi:'Mengembangkan kemampuan berpikir kritis, analisis isu, dan retorika dalam format debat terstruktur.'
+      }
+    ];
+
+    // GALLERY DATA
+    const galleryItems = [
+      {src:'https://placeholder.com/600x600/e67e22/ffffff?text=Robotik',caption:'Tim Robotik - Sesi Uji Coba'},
+      {src:'https://placeholder.com/600x600/2ecc71/ffffff?text=Basket',caption:'Latihan Basket'},
+      {src:'https://placeholder.com/600x600/9b59b6/ffffff?text=Paduan',caption:'Latihan Paduan Suara'},
+      {src:'https://placeholder.com/600x600/34495e/ffffff?text=KIR',caption:'Presentasi KIR'},
+      {src:'https://placeholder.com/600x600/16a085/ffffff?text=Tari',caption:'Gladi Seni Tari'},
+      {src:'https://placeholder.com/600x600/c0392b/ffffff?text=Paskibra',caption:'Latihan Paskibra'},
+      {src:'https://placeholder.com/600x600/1abc9c/ffffff?text=Coding',caption:'Workshop Coding'},
+      {src:'https://placeholder.com/600x600/f1c40f/ffffff?text=Fotografi',caption:'Eksplorasi Fotografi'}
+    ];
+
+    // TESTIMONIAL DATA
+    const testimonials = [
+      {img:'https://placeholder.com/80x80/7d3c98/ffffff?text=A', nama:'Andi Pratama', kelas:'Kelas XI IPA 1', quote:'Mengikuti ekskul robotik membuka wawasan saya. Belajar programming & kerja tim secara nyata.'},
+      {img:'https://placeholder.com/80x80/28b463/ffffff?text=B', nama:'Citra Dewi', kelas:'Kelas X-3', quote:'Paduan suara membangun rasa percaya diri, harmoni, dan persahabatan. Pengalaman berkelas.'},
+      {img:'https://placeholder.com/80x80/1abc9c/ffffff?text=C', nama:'Nadia Rahma', kelas:'Kelas XI IPS 2', quote:'KIR melatih saya meneliti & mempresentasikan ide secara runtut dan kritis.'},
+      {img:'https://placeholder.com/80x80/3498db/ffffff?text=D', nama:'Raka Putra', kelas:'Kelas XII IPA 2', quote:'Basket bukan sekadar olahraga; disiplin & strategi tim membuat saya berkembang.'}
+    ];
+
+    // RENDER CATEGORY CHIPS
+    const categories = ['Semua','Akademik & Riset','Sains & Teknologi','Olahraga','Seni & Budaya','Kepemimpinan'];
+    const categoryChips = document.getElementById('categoryChips');
+    categories.forEach(cat=>{
+      const btn=document.createElement('button');
+      btn.textContent=cat;
+      btn.className='chip text-xs md:text-sm';
+      btn.dataset.category=cat;
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('#categoryChips .chip').forEach(c=>c.dataset.active='false');
+        btn.dataset.active='true';
+        activeCategory=cat;
+        visibleCount=INITIAL_BATCH;
+        applyFilters();
+      });
+      if(cat==='Semua') btn.dataset.active='true';
+      categoryChips.appendChild(btn);
+    });
+
+    const searchInput=document.getElementById('searchInput');
+    let activeCategory='Semua';
+    let searchTerm='';
+    let visibleCount=0;
+    const INITIAL_BATCH=6;
+    const INCREMENT=6;
+    const clubCardsContainer=document.getElementById('clubCards');
+    const loadMoreWrap=document.getElementById('loadMoreWrap');
+    const loadMoreBtn=document.getElementById('loadMoreBtn');
+
+    function clubMatches(club){
+      const catOk = activeCategory==='Semua' || club.kategori===activeCategory;
+      const term = searchTerm.trim().toLowerCase();
+      if(!term) return catOk;
+      const combined = (club.nama+' '+club.pembina+' '+club.kategori).toLowerCase();
+      return catOk && combined.includes(term);
+    }
+
+    function createCard(club){
+      const card = document.createElement('article');
+      card.className='club-card bg-white dark:bg-base-200 rounded-2xl shadow border border-gray-100 dark:border-base-300 overflow-hidden flex flex-col';
+      card.innerHTML=`
+        <div class="relative h-44 w-full overflow-hidden">
+          <img src="${club.img}" alt="${club.nama}" class="w-full h-full object-cover" loading="lazy" />
+          <div class="absolute top-3 left-3 badge-soft">${club.kategori}</div>
+          ${club.capaian?`<div class="absolute bottom-3 left-3 text-[11px] bg-white/85 dark:bg-base-300/80 px-2 py-1 rounded-md font-medium text-blue-600 dark:text-blue-400">${club.capaian}</div>`:''}
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-bold text-lg mb-1">${club.nama}</h3>
+          <p class="text-xs text-gray-500 mb-3">${club.pembina}</p>
+          <ul class="text-[13px] text-gray-600 dark:text-gray-400 space-y-1 mb-4">
+            <li><span class="text-blue-600">Jadwal:</span> ${club.jadwal}</li>
+            <li><span class="text-blue-600">Level:</span> ${club.level}</li>
+          </ul>
+          <button class="btn btn-sm btn-outline rounded-full mt-auto" data-detail="${club.id}">Lihat Detail</button>
+        </div>
+      `;
+      return card;
+    }
+
+    function applyFilters(){
+      clubCardsContainer.innerHTML='';
+      const filtered = clubData.filter(clubMatches);
+      const slice = filtered.slice(0, visibleCount);
+      slice.forEach(c=>clubCardsContainer.appendChild(createCard(c)));
+      document.getElementById('statProgramCount').textContent = filtered.length;
+      if(filtered.length>visibleCount){
+        loadMoreWrap.classList.remove('hidden');
+      } else {
+        loadMoreWrap.classList.add('hidden');
+      }
+      if(filtered.length===0){
+        clubCardsContainer.innerHTML='<div class="col-span-full p-10 text-center text-sm text-gray-500">Tidak ditemukan hasil cocok dengan filter/pencarian.</div>';
+      }
+    }
+
+    function initClubs(){
+      visibleCount=INITIAL_BATCH;
+      applyFilters();
+    }
+
+    searchInput.addEventListener('input', e=>{
+      searchTerm=e.target.value;
+      visibleCount=INITIAL_BATCH;
+      applyFilters();
+    });
+
+    loadMoreBtn.addEventListener('click', ()=>{
+      visibleCount+=INCREMENT;
+      applyFilters();
+    });
+
+    // DETAIL MODAL
+    const detailDialog=document.getElementById('clubDetailDialog');
+    document.addEventListener('click', e=>{
+      const btn=e.target.closest('[data-detail]');
+      if(!btn) return;
+      const id=btn.dataset.detail;
+      const item=clubData.find(c=>c.id===id);
+      if(!item) return;
+      document.getElementById('clubTitle').textContent=item.nama;
+      document.getElementById('clubDescription').textContent=item.deskripsi;
+      document.getElementById('clubCategory').textContent=item.kategori;
+      document.getElementById('clubMentor').textContent=item.pembina;
+      document.getElementById('clubSchedule').textContent=item.jadwal;
+      document.getElementById('clubLevel').textContent=item.level;
+      const ul=document.getElementById('clubFocusList');
+      ul.innerHTML='';
+      item.highlight.forEach(h=>{
+        const li=document.createElement('li');
+        li.textContent=h;
+        ul.appendChild(li);
+      });
+      detailDialog.showModal();
+    });
+
+    // GALLERY
+    const galleryGrid=document.getElementById('galleryGrid');
+    function renderGallery(limit=6){
+      galleryGrid.innerHTML='';
+      galleryItems.slice(0,limit).forEach((g,i)=>{
+        const img=document.createElement('img');
+        img.src=g.src;
+        img.alt=g.caption;
+        img.loading='lazy';
+        img.dataset.index=i;
+        galleryGrid.appendChild(img);
+      });
+    }
+    renderGallery();
+
+    // LIGHTBOX
+    const lightbox=document.getElementById('lightbox');
+    const lightboxImg=document.getElementById('lightboxImg');
+    const lightboxCaption=document.getElementById('lightboxCaption');
+    galleryGrid.addEventListener('click', e=>{
+      if(e.target.tagName!=='IMG') return;
+      const idx=+e.target.dataset.index;
+      const item=galleryItems[idx];
+      lightboxImg.src=item.src;
+      lightboxCaption.textContent=item.caption;
+      lightbox.showModal();
+    });
+    document.getElementById('viewAllGallery').addEventListener('click', ()=>{
+      renderGallery(galleryItems.length);
+    });
+
+    // TESTIMONIAL SLIDER
+    const testimonialTrack=document.getElementById('testimonialTrack');
+    testimonials.forEach(t=>{
+      const wrap=document.createElement('div');
+      wrap.className='testimonial bg-white dark:bg-base-200 p-6 rounded-2xl shadow flex gap-5';
+      wrap.innerHTML=`
+          <img src="${t.img}" alt="Foto ${t.nama}" class="w-16 h-16 rounded-full object-cover flex-shrink-0" />
+          <div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 italic">"${t.quote}"</p>
+            <p class="mt-3 font-semibold">${t.nama}</p>
+            <p class="text-xs text-gray-500">${t.kelas}</p>
+          </div>
+      `;
+      testimonialTrack.appendChild(wrap);
+    });
+    let testiIndex=0;
+    function updateTestimonial(){
+      const width = testimonialTrack.firstElementChild?.getBoundingClientRect().width || 0;
+      testimonialTrack.style.transform=`translateX(-${testiIndex*width}px)`;
+    }
+    document.getElementById('nextTesti').addEventListener('click', ()=>{
+      testiIndex = (testiIndex+1) % testimonials.length;
+      updateTestimonial();
+    });
+    document.getElementById('prevTesti').addEventListener('click', ()=>{
+      testiIndex = (testiIndex-1+testimonials.length) % testimonials.length;
+      updateTestimonial();
+    });
+    window.addEventListener('resize', updateTestimonial);
+
+    // FORMS
+    document.getElementById('questionForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      e.target.reset();
+      const success=document.getElementById('formSuccess');
+      success.classList.remove('hidden');
+      setTimeout(()=>success.classList.add('hidden'),4000);
+    });
+
+    document.getElementById('miniRegForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      e.target.reset();
+      document.getElementById('miniRegSuccess').classList.remove('hidden');
+      setTimeout(()=>document.getElementById('miniRegSuccess').classList.add('hidden'),3500);
+    });
+
+    // MINIREG options
+    function populateSelectOptions(){
+      const opts = clubData.map(c=>`<option value="${c.id}">${c.nama}</option>`).join('');
+      document.getElementById('choice1').innerHTML='<option value="">Pilih...</option>'+opts;
+      document.getElementById('choice2').innerHTML='<option value="">Pilih...</option>'+opts;
+    }
+
+    // SCROLL
+    document.getElementById('btnScrollClubs').addEventListener('click', ()=>{
+      document.getElementById('clubs').scrollIntoView({behavior:'smooth'});
+    });
+
+    // GUIDE & REG BUTTON
+    document.getElementById('openGuide').addEventListener('click',()=> document.getElementById('guideDialog').showModal());
+    document.getElementById('openRegForm').addEventListener('click',()=> document.getElementById('registerDialog').showModal());
+
+    // SEARCH DIALOG
+    const searchDialog=document.getElementById('searchDialog');
+    document.getElementById('openSearch').addEventListener('click', ()=> {
+      searchDialog.showModal();
+      setTimeout(()=>document.getElementById('globalSearch').focus(),100);
+    });
+    const globalSearch=document.getElementById('globalSearch');
+    const searchResults=document.getElementById('searchResults');
+    globalSearch.addEventListener('input', ()=>{
+      const q=globalSearch.value.toLowerCase();
+      searchResults.innerHTML='';
+      const res=clubData.filter(c => (c.nama+' '+c.pembina+' '+c.kategori).toLowerCase().includes(q));
+      if(res.length===0){
+        searchResults.innerHTML='<li class="p-3 text-gray-500">Tidak ada hasil.</li>';
+      } else {
+        res.forEach(c=>{
+          const li=document.createElement('li');
+            li.className='p-3 hover:bg-base-200 cursor-pointer flex justify-between gap-4';
+            li.innerHTML=`<span><strong>${c.nama}</strong><br><span class="text-xs text-gray-500">${c.pembina}</span></span><span class="text-[10px] badge-soft self-start">${c.kategori}</span>`;
+            li.addEventListener('click', ()=>{
+              searchDialog.close();
+              document.querySelector('[data-category="Semua"]').click();
+              searchInput.value=c.nama;
+              searchTerm=c.nama;
+              visibleCount=INITIAL_BATCH;
+              applyFilters();
+              document.getElementById('clubs').scrollIntoView({behavior:'smooth'});
+            });
+          searchResults.appendChild(li);
+        });
+      }
+    });
+
+    // INIT
+    initClubs();
+    populateSelectOptions();
+    updateTestimonial();
+
+    // FOCUS RING for keyboard
+    function handleFirstTab(e){
+      if(e.key==='Tab'){
+        document.body.classList.add('outline-enabled');
+        window.removeEventListener('keydown', handleFirstTab);
+      }
+    }
+    window.addEventListener('keydown', handleFirstTab);
+
+    // Reduced Motion
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('.club-card').forEach(c=>c.style.transition='none');
+    }
+  </script>
+
+  <script src="/pages/script.js"></script>
+</body>
 </html>
