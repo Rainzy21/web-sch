@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile</title>
+    <meta name="description" content="Sejarah dan perjalanan SDN 001 Samarinda dari awal pendirian hingga menjadi sekolah berprestasi" />
+    <title>Sejarah Sekolah | SDN 001 Samarinda</title>
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5"
       rel="stylesheet"
@@ -11,18 +12,17 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
       body {
         font-family: "Roboto", sans-serif;
+        scroll-behavior: smooth;
       }
-      nav {
+      h1, h2, h3, h4, h5, h6, nav {
         font-family: "Poppins", sans-serif;
       }
       .drawer-side {
@@ -31,139 +31,646 @@
       input[type="checkbox"]:not(:checked) ~ .drawer-side {
         transform: translateX(-100%);
       }
+      .hero-section {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('https://picsum.photos/id/260/1200/600');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+      .timeline-box {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .timeline-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+      }
+      .timeline-circle {
+        transition: transform 0.3s ease;
+      }
+      .timeline li:hover .timeline-circle {
+        transform: scale(1.2);
+      }
+      .gallery-image {
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+      .gallery-image:hover {
+        transform: scale(1.05);
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3b82f6;
+        border-radius: 6px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #2563eb;
+      }
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        padding-top: 50px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+      .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 800px;
+        max-height: 80vh;
+        object-fit: contain;
+      }
+      .modal-caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 800px;
+        text-align: center;
+        color: white;
+        padding: 10px 0;
+        font-size: 1rem;
+      }
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      .close:hover,
+      .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      /* Era navigation */
+      .era-nav {
+        position: sticky;
+        top: 20px;
+      }
+      .era-nav-item {
+        transition: all 0.3s ease;
+      }
+      .era-nav-item:hover, .era-nav-item.active {
+        background-color: #3b82f6;
+        color: white;
+        transform: translateX(5px);
+      }
     </style>
   </head>
-  <body class="min-h-screen flex flex-col">
-   <div id="navbar-placeholder"></div>
-    <main class="p-4">
-      <h2 class="text-2xl font-bold mb-4">History</h2>
-      <ul class="timeline timeline-vertical">
-        <!-- 1975 -->
-        <li>
-          <div
-            class="timeline-start timeline-box bg-primary text-white shadow-lg"
-          >
-            <h3 class="text-lg font-semibold">1975 - Berdirinya Sekolah</h3>
-            <p class="text-sm mt-1 leading-relaxed">
-              SDN 001 Samarinda didirikan pada tahun 1975 sebagai salah satu
-              pelopor pendidikan dasar di kota ini. Dengan bangunan sederhana
-              dan hanya beberapa ruang kelas, sekolah ini lahir dari semangat
-              gotong royong masyarakat setempat dan dukungan pemerintah daerah.
-              Sejak awal, tujuan utamanya adalah menyediakan pendidikan yang
-              terjangkau dan berkualitas, agar anak-anak di wilayah Samarinda
-              memiliki bekal ilmu untuk masa depan yang lebih baik.
-            </p>
-          </div>
-          <div class="timeline-middle">
-            <div
-              class="bg-primary text-white w-8 h-8 flex items-center justify-center rounded-full font-bold"
-            >
-              1
-            </div>
-          </div>
-          <hr class="bg-primary" />
-        </li>
-
-        <!-- 1980 -->
-        <li>
-          <hr class="bg-primary" />
-          <div class="timeline-middle">
-            <div
-              class="bg-primary text-white w-8 h-8 flex items-center justify-center rounded-full font-bold"
-            >
-              2
-            </div>
-          </div>
-          <div
-            class="timeline-end timeline-box bg-primary text-white shadow-lg"
-          >
-            <h3 class="text-lg font-semibold">
-              1980 - Penambahan Fasilitas Pertama
-            </h3>
-            <p class="text-sm mt-1 leading-relaxed">
-              Lima tahun setelah berdiri, sekolah mulai memperluas fasilitasnya.
-              Dibangun ruang kelas tambahan, ruang guru yang lebih nyaman, dan
-              perpustakaan sederhana yang menjadi pusat belajar siswa.
-              Perkembangan ini tak lepas dari peran aktif para guru, komite
-              sekolah, dan dukungan masyarakat yang percaya akan pentingnya
-              pendidikan. Perpustakaan ini menjadi sumber pengetahuan utama bagi
-              siswa yang kala itu belum memiliki akses internet.
-            </p>
-          </div>
-          <hr class="bg-primary" />
-        </li>
-
-        <!-- 2000 -->
-        <li>
-          <hr class="bg-primary" />
-          <div
-            class="timeline-start timeline-box bg-primary text-white shadow-lg"
-          >
-            <h3 class="text-lg font-semibold">
-              2000 - Modernisasi Pembelajaran
-            </h3>
-            <p class="text-sm mt-1 leading-relaxed">
-              Memasuki abad ke-21, SDN 001 Samarinda memulai langkah besar dalam
-              modernisasi pembelajaran. Laboratorium komputer pertama didirikan
-              untuk memperkenalkan siswa pada teknologi digital. Guru-guru
-              mendapatkan pelatihan khusus agar mampu mengintegrasikan teknologi
-              dalam metode pengajaran. Selain itu, kegiatan ekstrakurikuler
-              diperluas — mulai dari seni, olahraga, hingga sains — sehingga
-              siswa dapat mengembangkan bakat dan minatnya secara seimbang.
-            </p>
-          </div>
-          <div class="timeline-middle">
-            <div
-              class="bg-primary text-white w-8 h-8 flex items-center justify-center rounded-full font-bold"
-            >
-              3
-            </div>
-          </div>
-          <hr class="bg-primary" />
-        </li>
-
-        <!-- Sekarang -->
-        <li>
-          <hr class="bg-primary" />
-          <div class="timeline-middle">
-            <div
-              class="bg-primary text-white w-8 h-8 flex items-center justify-center rounded-full font-bold"
-            >
-              4
-            </div>
-          </div>
-          <div
-            class="timeline-end timeline-box bg-primary text-white shadow-lg"
-          >
-            <h3 class="text-lg font-semibold">
-              Sekarang - Sekolah Berprestasi
-            </h3>
-            <p class="text-sm mt-1 leading-relaxed">
-              Kini, SDN 001 Samarinda dikenal sebagai sekolah berprestasi di
-              berbagai ajang akademik dan non-akademik, baik tingkat kota maupun
-              provinsi. Dengan fasilitas modern, lingkungan belajar yang nyaman,
-              dan guru-guru profesional, sekolah ini terus berkomitmen mencetak
-              generasi yang cerdas, kreatif, dan berkarakter. Setiap tahunnya,
-              banyak alumni yang berhasil melanjutkan pendidikan ke
-              sekolah-sekolah unggulan dan meraih prestasi di tingkat nasional.
-            </p>
-          </div>
-        </li>
-      </ul>
-
-      <!-- Foto dokumentasi -->
-      <div class="mt-10 mb-20">
-        <img
-          src="/assets/history-photo.jpg"
-          alt="Foto sejarah sekolah"
-          class="rounded-lg shadow-md w-full max-w-3xl mx-auto"
-        />
-        <p class="text-center text-sm mt-2 text-gray-500">
-          Dokumentasi SDN 001 Samarinda dari masa ke masa
+  <body class="min-h-screen flex flex-col bg-gray-50">
+    <div id="navbar-placeholder"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-24">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">SEJARAH SEKOLAH</h1>
+        <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-gray-200">
+          Perjalanan 50 tahun SDN 001 Samarinda dalam mencerdaskan generasi bangsa
         </p>
+        <div class="flex justify-center gap-4">
+          <a href="#timeline" class="btn bg-blue-600 hover:bg-blue-700 border-none text-white px-6">
+            Lihat Timeline
+            <i class="fas fa-arrow-down ml-2"></i>
+          </a>
+          <a href="#galeri" class="btn bg-transparent hover:bg-white hover:text-blue-600 border-white text-white px-6">
+            Galeri Foto
+            <i class="fas fa-images ml-2"></i>
+          </a>
+        </div>
       </div>
-      <div id="footer"></div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-12">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row gap-8">
+          <!-- Sidebar with Era Navigation -->
+          <aside class="lg:w-1/4">
+            <div class="era-nav bg-white p-5 rounded-lg shadow-md">
+              <h3 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">
+                <i class="fas fa-clock mr-2 text-blue-600"></i>Era Sekolah
+              </h3>
+              <ul class="space-y-2">
+                <li>
+                  <a href="#era-1975" class="era-nav-item flex items-center p-2 rounded-md text-gray-700 hover:text-white">
+                    <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center mr-3 text-xs font-bold">1</span>
+                    <span>1975 - Pendirian</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#era-1980" class="era-nav-item flex items-center p-2 rounded-md text-gray-700 hover:text-white">
+                    <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center mr-3 text-xs font-bold">2</span>
+                    <span>1980 - Pengembangan</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#era-2000" class="era-nav-item flex items-center p-2 rounded-md text-gray-700 hover:text-white">
+                    <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center mr-3 text-xs font-bold">3</span>
+                    <span>2000 - Modernisasi</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#era-sekarang" class="era-nav-item flex items-center p-2 rounded-md text-gray-700 hover:text-white">
+                    <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center mr-3 text-xs font-bold">4</span>
+                    <span>Sekarang - Prestasi</span>
+                  </a>
+                </li>
+              </ul>
+              
+              <div class="mt-8 bg-blue-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-blue-800 mb-2">Tahukah Kamu?</h4>
+                <p class="text-sm text-gray-700">SDN 001 Samarinda adalah sekolah dasar tertua di Kota Samarinda dan telah menghasilkan lebih dari 5.000 alumni yang tersebar di berbagai bidang profesi.</p>
+              </div>
+            </div>
+            
+            <!-- Statistics Card -->
+            <div class="bg-white p-5 rounded-lg shadow-md mt-6">
+              <h3 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">
+                <i class="fas fa-chart-line mr-2 text-blue-600"></i>Statistik Sekolah
+              </h3>
+              <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Usia Sekolah</span>
+                  <span class="font-bold text-blue-600">50 Tahun</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Total Alumni</span>
+                  <span class="font-bold text-blue-600">5,000+</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Kepala Sekolah</span>
+                  <span class="font-bold text-blue-600">8 Orang</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Prestasi Nasional</span>
+                  <span class="font-bold text-blue-600">25+</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Guru & Staf</span>
+                  <span class="font-bold text-blue-600">45 Orang</span>
+                </div>
+              </div>
+            </div>
+            
+
+            <!-- Last Update Info -->
+            <div class="bg-white p-4 rounded-lg shadow-md mt-6 text-xs text-gray-500">
+              <p>Terakhir diperbarui: 2025-08-15</p>
+              <p>Oleh: rivoldymakatita</p>
+            </div>
+          </aside>
+          
+          <!-- Main Timeline Content -->
+          <div class="lg:w-3/4">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h2 class="text-2xl font-bold mb-6 text-blue-800">Perjalanan SDN 001 Samarinda</h2>
+              <p class="text-gray-700 mb-6">
+                SDN 001 Samarinda memiliki sejarah panjang yang dimulai sejak tahun 1975 hingga perkembangannya menjadi sekolah berprestasi seperti sekarang. Berikut adalah perjalanan sekolah kami dari masa ke masa yang penuh dengan perjuangan, inovasi, dan pencapaian.
+              </p>
+
+              <!-- Timeline -->
+              <div id="timeline" class="mt-10">
+                <ul class="timeline timeline-vertical">
+                  <!-- 1975 -->
+                  <li id="era-1975">
+                    <div class="timeline-start timeline-box bg-blue-600 text-white shadow-lg">
+                      <div class="flex items-center mb-3">
+                        <i class="fas fa-landmark text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">1975 - Berdirinya Sekolah</h3>
+                      </div>
+                      <p class="text-sm mt-1 leading-relaxed">
+                        SDN 001 Samarinda didirikan pada tahun 1975 sebagai salah satu pelopor pendidikan dasar di kota ini. Dengan bangunan sederhana dan hanya beberapa ruang kelas, sekolah ini lahir dari semangat gotong royong masyarakat setempat dan dukungan pemerintah daerah.
+                      </p>
+                      <div class="mt-3 space-y-2">
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Dibangun di atas lahan seluas 5.000 m²</span>
+                        </div>
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Awalnya memiliki 6 ruang kelas dan 10 guru</span>
+                        </div>
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Kepala Sekolah pertama: Bapak M. Saleh</span>
+                        </div>
+                      </div>
+                      <div class="mt-4 grid grid-cols-2 gap-2">
+                        <div class="bg-gray-800 rounded h-32 flex items-center justify-center gallery-image" onclick="openModal(this.querySelector('img').src, 'Bangunan SDN 001 Samarinda tahun 1975')">
+                          <img src="https://picsum.photos/id/180/300/200" alt="Bangunan lama" class="rounded object-cover w-full h-full"/>
+                        </div>
+                        <div class="bg-gray-800 rounded h-32 flex items-center justify-center gallery-image" onclick="openModal(this.querySelector('img').src, 'Para guru pertama SDN 001 Samarinda')">
+                          <img src="https://picsum.photos/id/26/300/200" alt="Guru pertama" class="rounded object-cover w-full h-full"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-middle">
+                      <div class="timeline-circle bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-full font-bold">
+                        1
+                      </div>
+                    </div>
+                    <hr class="bg-blue-600" />
+                  </li>
+
+                  <!-- 1980 -->
+                  <li id="era-1980">
+                    <hr class="bg-blue-600" />
+                    <div class="timeline-middle">
+                      <div class="timeline-circle bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-full font-bold">
+                        2
+                      </div>
+                    </div>
+                    <div class="timeline-end timeline-box bg-blue-600 text-white shadow-lg">
+                      <div class="flex items-center mb-3">
+                        <i class="fas fa-book text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">1980 - Penambahan Fasilitas</h3>
+                      </div>
+                      <p class="text-sm mt-1 leading-relaxed">
+                        Lima tahun setelah berdiri, sekolah mulai memperluas fasilitasnya. Dibangun ruang kelas tambahan, ruang guru yang lebih nyaman, dan perpustakaan sederhana yang menjadi pusat belajar siswa.
+                      </p>
+                      <div class="mt-3 space-y-2">
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Penambahan 4 ruang kelas baru</span>
+                        </div>
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Pembangunan perpustakaan dengan 1,000+ buku</span>
+                        </div>
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Lapangan olahraga multifungsi</span>
+                        </div>
+                      </div>
+                      <div class="mt-4 grid grid-cols-2 gap-2">
+                        <div class="bg-gray-800 rounded h-32 flex items-center justify-center gallery-image" onclick="openModal(this.querySelector('img').src, 'Perpustakaan SDN 001 Samarinda tahun 1980')">
+                          <img src="https://picsum.photos/id/20/300/200" alt="Perpustakaan 1980" class="rounded object-cover w-full h-full"/>
+                        </div>
+                        <div class="bg-gray-800 rounded h-32 flex items-center justify-center gallery-image" onclick="openModal(this.querySelector('img').src, 'Lapangan olahraga SDN 001 Samarinda tahun 1980')">
+                          <img src="https://picsum.photos/id/28/300/200" alt="Lapangan 1980" class="rounded object-cover w-full h-full"/>
+                        </div>
+                      </div>
+                      <div class="mt-4 bg-white/20 p-3 rounded-lg">
+                        <h4 class="font-semibold mb-1 flex items-center">
+                          <i class="fas fa-trophy mr-2"></i>Prestasi Era 1980an
+                        </h4>
+                        <ul class="text-xs list-disc pl-5 space-y-1">
+                          <li>Juara 1 Lomba Kebersihan Sekolah tingkat Kota (1982)</li>
+                          <li>Juara 2 Lomba Cerdas Cermat tingkat Provinsi (1985)</li>
+                          <li>Juara 3 Lomba Sekolah Sehat tingkat Nasional (1988)</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <hr class="bg-blue-600" />
+                  </li>
+
+                  <!-- 2000 -->
+                  <li id="era-2000">
+                    <hr class="bg-blue-600" />
+                    <div class="timeline-start timeline-box bg-blue-600 text-white shadow-lg">
+                      <div class="flex items-center mb-3">
+                        <i class="fas fa-laptop text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">2000 - Modernisasi Pembelajaran</h3>
+                      </div>
+                      <p class="text-sm mt-1 leading-relaxed">
+                        Memasuki abad ke-21, SDN 001 Samarinda memulai langkah besar dalam modernisasi pembelajaran. Laboratorium komputer pertama didirikan untuk memperkenalkan siswa pada teknologi digital.
+                      </p>
+                      <div class="mt-3 space-y-2">
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Pembangunan lab komputer dengan 20 unit PC</span>
+                        </div>
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Pelatihan IT untuk seluruh guru</span>
+                        </div>
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Perluasan program ekstrakurikuler</span>
+                        </div>
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Renovasi seluruh bangunan sekolah</span>
+                        </div>
+                      </div>
+                      <div class="mt-4 grid grid-cols-2 gap-2">
+                        <div class="bg-gray-800 rounded h-32 flex items-center justify-center gallery-image" onclick="openModal(this.querySelector('img').src, 'Laboratorium komputer pertama tahun 2000')">
+                          <img src="https://picsum.photos/id/160/300/200" alt="Lab Komputer" class="rounded object-cover w-full h-full"/>
+                        </div>
+                        <div class="bg-gray-800 rounded h-32 flex items-center justify-center gallery-image" onclick="openModal(this.querySelector('img').src, 'Proses renovasi bangunan sekolah tahun 2000')">
+                          <img src="https://picsum.photos/id/71/300/200" alt="Renovasi Sekolah" class="rounded object-cover w-full h-full"/>
+                        </div>
+                      </div>
+                      <div class="mt-4 bg-white/20 p-3 rounded-lg">
+                        <h4 class="font-semibold mb-1 flex items-center">
+                          <i class="fas fa-user-tie mr-2"></i>Kepala Sekolah Era 2000
+                        </h4>
+                        <div class="flex items-center text-xs">
+                          <div class="w-12 h-12 rounded-full bg-blue-800 flex items-center justify-center mr-3">
+                            <i class="fas fa-user"></i>
+                          </div>
+                          <div>
+                            <p class="font-semibold">Dra. Halimah Tusadiah, M.Pd</p>
+                            <p>Periode 1998-2005</p>
+                            <p class="mt-1">Pencetus program modernisasi dan perluasan fasilitas sekolah</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-middle">
+                      <div class="timeline-circle bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-full font-bold">
+                        3
+                      </div>
+                    </div>
+                    <hr class="bg-blue-600" />
+                  </li>
+
+                  <!-- Sekarang -->
+                  <li id="era-sekarang">
+                    <hr class="bg-blue-600" />
+                    <div class="timeline-middle">
+                      <div class="timeline-circle bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-full font-bold">
+                        4
+                      </div>
+                    </div>
+                    <div class="timeline-end timeline-box bg-blue-600 text-white shadow-lg">
+                      <div class="flex items-center mb-3">
+                        <i class="fas fa-award text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">Sekarang - Sekolah Berprestasi</h3>
+                      </div>
+                      <p class="text-sm mt-1 leading-relaxed">
+                        Kini, SDN 001 Samarinda dikenal sebagai sekolah berprestasi di berbagai ajang akademik dan non-akademik, baik tingkat kota maupun provinsi. Dengan fasilitas modern, lingkungan belajar yang nyaman, dan guru-guru profesional, sekolah ini terus berkomitmen mencetak generasi yang cerdas, kreatif, dan berkarakter.
+                      </p>
+                      <div class="mt-3 space-y-2">
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Smart classroom di setiap kelas</span>
+                        </div>
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Program literasi digital</span>
+                        </div>
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Program bimbingan karakter</span>
+                        </div>
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle mt-1 mr-2"></i>
+                          <span>Kolaborasi internasional dengan sekolah luar negeri</span>
+                        </div>
+                      </div>
+                      <div class="mt-4 grid grid-cols-2 gap-2">
+                        <div class="bg-gray-800 rounded h-32 flex items-center justify-center gallery-image" onclick="openModal(this.querySelector('img').src, 'Smart classroom dengan fasilitas digital modern')">
+                          <img src="https://picsum.photos/id/239/300/200" alt="Kelas Pintar" class="rounded object-cover w-full h-full"/>
+                        </div>
+                        <div class="bg-gray-800 rounded h-32 flex items-center justify-center gallery-image" onclick="openModal(this.querySelector('img').src, 'Penerimaan penghargaan sekolah berprestasi tingkat nasional')">
+                          <img src="https://picsum.photos/id/175/300/200" alt="Upacara Penghargaan" class="rounded object-cover w-full h-full"/>
+                        </div>
+                      </div>
+                      <div class="mt-4">
+                        <div class="grid grid-cols-2 gap-3">
+                          <div class="bg-white/20 p-3 rounded-lg">
+                            <h4 class="font-semibold text-center mb-2">Prestasi Akademik</h4>
+                            <div class="text-center text-2xl font-bold">25+</div>
+                            <div class="text-center text-xs">Penghargaan Nasional</div>
+                          </div>
+                          <div class="bg-white/20 p-3 rounded-lg">
+                            <h4 class="font-semibold text-center mb-2">Siswa Berprestasi</h4>
+                            <div class="text-center text-2xl font-bold">100+</div>
+                            <div class="text-center text-xs">Juara Kompetisi</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              
+              <!-- Milestone Graphics -->
+              <div class="mt-16 mb-8 px-4">
+                <h3 class="text-xl font-bold mb-6 text-center text-gray-800">Milestone Utama SDN 001 Samarinda</h3>
+                <div class="flex flex-wrap justify-center">
+                  <div class="flex flex-col items-center mx-4 mb-6">
+                    <div class="w-20 h-20 rounded-full bg-blue-600 text-white flex items-center justify-center mb-2">
+                      <i class="fas fa-school text-3xl"></i>
+                    </div>
+                    <div class="text-center">
+                      <p class="font-bold text-gray-800">1975</p>
+                      <p class="text-sm text-gray-600">Pendirian Sekolah</p>
+                    </div>
+                  </div>
+                  <div class="w-12 h-1 bg-blue-300 self-center hidden md:block"></div>
+                  <div class="flex flex-col items-center mx-4 mb-6">
+                    <div class="w-20 h-20 rounded-full bg-blue-600 text-white flex items-center justify-center mb-2">
+                      <i class="fas fa-book-open text-3xl"></i>
+                    </div>
+                    <div class="text-center">
+                      <p class="font-bold text-gray-800">1980</p>
+                      <p class="text-sm text-gray-600">Perpustakaan Pertama</p>
+                    </div>
+                  </div>
+                  <div class="w-12 h-1 bg-blue-300 self-center hidden md:block"></div>
+                  <div class="flex flex-col items-center mx-4 mb-6">
+                    <div class="w-20 h-20 rounded-full bg-blue-600 text-white flex items-center justify-center mb-2">
+                      <i class="fas fa-medal text-3xl"></i>
+                    </div>
+                    <div class="text-center">
+                      <p class="font-bold text-gray-800">1988</p>
+                      <p class="text-sm text-gray-600">Penghargaan Nasional Pertama</p>
+                    </div>
+                  </div>
+                  <div class="w-12 h-1 bg-blue-300 self-center hidden md:block"></div>
+                  <div class="flex flex-col items-center mx-4 mb-6">
+                    <div class="w-20 h-20 rounded-full bg-blue-600 text-white flex items-center justify-center mb-2">
+                      <i class="fas fa-desktop text-3xl"></i>
+                    </div>
+                    <div class="text-center">
+                      <p class="font-bold text-gray-800">2000</p>
+                      <p class="text-sm text-gray-600">Lab Komputer Pertama</p>
+                    </div>
+                  </div>
+                  <div class="w-12 h-1 bg-blue-300 self-center hidden md:block"></div>
+                  <div class="flex flex-col items-center mx-4 mb-6">
+                    <div class="w-20 h-20 rounded-full bg-blue-600 text-white flex items-center justify-center mb-2">
+                      <i class="fas fa-star text-3xl"></i>
+                    </div>
+                    <div class="text-center">
+                      <p class="font-bold text-gray-800">2020</p>
+                      <p class="text-sm text-gray-600">Sekolah Rujukan Nasional</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Gallery Section -->
+              <div id="galeri" class="mt-16">
+                <h3 class="text-xl font-bold mb-6 text-center text-gray-800">Galeri Foto Sejarah SDN 001 Samarinda</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <div class="w-full h-40 rounded-lg shadow-md gallery-image bg-gray-800 flex items-center justify-center overflow-hidden" onclick="openModal(this.querySelector('img').src, 'Dokumentasi SDN 001 Samarinda dari masa ke masa')">
+                    <img src="https://picsum.photos/id/42/400/300" alt="Foto sejarah 1" class="w-full h-full object-cover" />
+                  </div>
+                  <div class="w-full h-40 rounded-lg shadow-md gallery-image bg-gray-800 flex items-center justify-center overflow-hidden" onclick="openModal(this.querySelector('img').src, 'Bangunan sekolah tahun 1990')">
+                    <img src="https://picsum.photos/id/222/400/300" alt="Foto sejarah 2" class="w-full h-full object-cover" />
+                  </div>
+                  <div class="w-full h-40 rounded-lg shadow-md gallery-image bg-gray-800 flex items-center justify-center overflow-hidden" onclick="openModal(this.querySelector('img').src, 'Kegiatan belajar mengajar tahun 1985')">
+                    <img src="https://picsum.photos/id/177/400/300" alt="Foto sejarah 3" class="w-full h-full object-cover" />
+                  </div>
+                  <div class="w-full h-40 rounded-lg shadow-md gallery-image bg-gray-800 flex items-center justify-center overflow-hidden" onclick="openModal(this.querySelector('img').src, 'Upacara bendera tahun 1980')">
+                    <img src="https://picsum.photos/id/117/400/300" alt="Foto sejarah 4" class="w-full h-full object-cover" />
+                  </div>
+                  <div class="w-full h-40 rounded-lg shadow-md gallery-image bg-gray-800 flex items-center justify-center overflow-hidden" onclick="openModal(this.querySelector('img').src, 'Kunjungan pejabat pendidikan tahun 1995')">
+                    <img src="https://picsum.photos/id/116/400/300" alt="Foto sejarah 5" class="w-full h-full object-cover" />
+                  </div>
+                  <div class="w-full h-40 rounded-lg shadow-md gallery-image bg-gray-800 flex items-center justify-center overflow-hidden" onclick="openModal(this.querySelector('img').src, 'Pembangunan gedung baru tahun 2005')">
+                    <img src="https://picsum.photos/id/318/400/300" alt="Foto sejarah 6" class="w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
+              
+              
+              <!-- Former Principals Section -->
+              <div class="mt-16">
+                <h3 class="text-xl font-bold mb-6 text-center text-gray-800">Kepala Sekolah Sepanjang Sejarah</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div class="text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto overflow-hidden border-4 border-blue-600 bg-gray-700 flex items-center justify-center">
+                      <i class="fas fa-user text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold mt-2">M. Saleh</h4>
+                    <p class="text-xs text-gray-600">1975-1985</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto overflow-hidden border-4 border-blue-600 bg-gray-700 flex items-center justify-center">
+                      <i class="fas fa-user text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold mt-2">H. Ismail</h4>
+                    <p class="text-xs text-gray-600">1985-1995</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto overflow-hidden border-4 border-blue-600 bg-gray-700 flex items-center justify-center">
+                      <i class="fas fa-user text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold mt-2">Hj. Marwah</h4>
+                    <p class="text-xs text-gray-600">1995-1998</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto overflow-hidden border-4 border-blue-600 bg-gray-700 flex items-center justify-center">
+                      <i class="fas fa-user text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold mt-2">Dra. Halimah</h4>
+                    <p class="text-xs text-gray-600">1998-2005</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
+
+    <!-- Modal for Image Gallery -->
+    <div id="imageModal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img class="modal-content" id="modalImage">
+      <div id="modalCaption" class="modal-caption"></div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+      // Image modal functionality
+      function openModal(imgSrc, caption) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const captionText = document.getElementById('modalCaption');
+        
+        modal.style.display = "block";
+        modalImg.src = imgSrc;
+        captionText.innerHTML = caption || '';
+        
+        // Close modal with escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            closeModal();
+          }
+        });
+      }
+      
+      function closeModal() {
+        document.getElementById('imageModal').style.display = "none";
+      }
+      
+      // Close modal when clicking outside the image
+      window.onclick = function(event) {
+        const modal = document.getElementById('imageModal');
+        if (event.target == modal) {
+          closeModal();
+        }
+      };
+      
+      // Smooth scrolling for era navigation
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.era-nav-item').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+              });
+              
+              // Add active class to current era nav
+              document.querySelectorAll('.era-nav-item').forEach(item => {
+                item.classList.remove('active', 'bg-blue-600', 'text-white');
+                item.classList.add('text-gray-700');
+              });
+              this.classList.add('active', 'bg-blue-600', 'text-white');
+              this.classList.remove('text-gray-700');
+            }
+          });
+        });
+        
+        // Track scrolling to highlight current era in sidebar
+        window.addEventListener('scroll', function() {
+          const scrollPosition = window.scrollY;
+          
+          document.querySelectorAll('li[id^="era-"]').forEach(era => {
+            if (era.offsetTop - 100 <= scrollPosition && era.offsetTop + era.offsetHeight > scrollPosition) {
+              const eraId = era.getAttribute('id');
+              const navItem = document.querySelector(`.era-nav-item[href="#${eraId}"]`);
+              
+              document.querySelectorAll('.era-nav-item').forEach(item => {
+                item.classList.remove('active', 'bg-blue-600', 'text-white');
+                item.classList.add('text-gray-700');
+              });
+              
+              if (navItem) {
+                navItem.classList.add('active', 'bg-blue-600', 'text-white');
+                navItem.classList.remove('text-gray-700');
+              }
+            }
+          });
+        });
+      });
+    </script>
     <script src="/pages/script.js"></script>
   </body>
 </html>

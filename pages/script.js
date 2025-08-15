@@ -68,3 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+
+console.log("Happy Birthday Laska Lambung.");

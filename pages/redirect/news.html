@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Berita Sekolah</title>
+  <title>Berita Sekolah | SMK Nusantara</title>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
     body {
       font-family: 'Roboto', sans-serif;
+      background-color: #f8f9fa;
     }
-    nav {
+    h1, h2, h3, h4, h5, h6, nav {
       font-family: 'Poppins', sans-serif;
     }
     .drawer-side {
@@ -21,57 +23,586 @@
     input[type="checkbox"]:not(:checked) ~ .drawer-side {
       transform: translateX(-100%);
     }
+    .news-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .category-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 50;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: black;
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col bg-gray-100">
+<body class="min-h-screen flex flex-col">
 
   <div id="navbar-placeholder"></div>
 
+  <!-- Hero Section with Featured News -->
+  <div class="relative bg-gradient-to-r from-blue-800 to-blue-600 text-white">
+    <div class="max-w-7xl mx-auto px-4 py-12 md:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-bold mb-4">BERITA SEKOLAH</h1>
+          <p class="text-blue-100 mb-6">Temukan informasi terbaru dan kegiatan menarik seputar sekolah kita. Jadilah bagian dari komunitas yang terinformasi dan aktif.</p>
+          <div class="flex space-x-4">
+            <a href="#berita-terbaru" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-blue-50 transition duration-300">Berita Terbaru</a>
+            <a href="#kategori" class="bg-transparent border border-white text-white px-6 py-2 rounded-full font-medium hover:bg-white hover:text-blue-600 transition duration-300">Kategori</a>
+          </div>
+        </div>
+        <div class="relative overflow-hidden rounded-xl shadow-lg">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
+          <img src="/assets/1.jpg" alt="Berita Utama" class="w-full h-64 md:h-80 object-cover" onerror="this.src='https://via.placeholder.com/600x400?text=Berita+Utama'"/>
+          <div class="absolute bottom-0 left-0 p-6 z-20">
+            <span class="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full uppercase mb-2 inline-block">Berita Utama</span>
+            <h2 class="text-xl md:text-2xl font-bold text-white mb-2">Siswa SMK Nusantara Raih Juara Nasional Lomba Robotika</h2>
+            <p class="text-white/90 mb-3">Tim robotika sekolah kita berhasil mengalahkan 50 tim dari seluruh Indonesia dalam ajang bergengsi tersebut.</p>
+            <button onclick="showNewsDetail('berita-utama')" class="flex items-center text-white hover:text-yellow-300 transition">
+              <span>Baca Selengkapnya</span>
+              <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search and Filter Section -->
+  <div class="bg-white mt-3">
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="relative w-full md:w-1/2">
+          <input type="text" id="searchInput" placeholder="Cari berita..." class="w-full px-4 py-2 pl-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+        </div>
+        <div class="flex gap-3 w-full md:w-auto">
+          <select id="categoryFilter" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="all">Semua Kategori</option>
+            <option value="prestasi">Prestasi</option>
+            <option value="kegiatan">Kegiatan</option>
+            <option value="pengumuman">Pengumuman</option>
+            <option value="akademik">Akademik</option>
+          </select>
+          <select id="sortNews" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="newest">Terbaru</option>
+            <option value="oldest">Terlama</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category Pills -->
+  <div id="kategori" class="bg-white pt-6">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-wrap gap-2 justify-center">
+        <button class="category-pill bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium hover:bg-blue-700">Semua</button>
+        <button class="category-pill bg-gray-200 text-gray-800 px-4 py-1 rounded-full text-sm font-medium hover:bg-gray-300">Prestasi</button>
+        <button class="category-pill bg-gray-200 text-gray-800 px-4 py-1 rounded-full text-sm font-medium hover:bg-gray-300">Kegiatan</button>
+        <button class="category-pill bg-gray-200 text-gray-800 px-4 py-1 rounded-full text-sm font-medium hover:bg-gray-300">Pengumuman</button>
+        <button class="category-pill bg-gray-200 text-gray-800 px-4 py-1 rounded-full text-sm font-medium hover:bg-gray-300">Akademik</button>
+        <button class="category-pill bg-gray-200 text-gray-800 px-4 py-1 rounded-full text-sm font-medium hover:bg-gray-300">Ekstrakurikuler</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Main Content -->
-  <header>
-    <div class="max-w-7xl mx-auto px-4 py-6 flex justify-center">
-      <h1 class="text-2xl font-semibold text-gray-800 text-center">BERITA SEKOLAH</h1>
-    </div>
-  </header>
+  <main id="berita-terbaru" class="flex-grow bg-white pb-12">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800">Berita Terbaru</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- News Card 1 -->
+        <div class="news-card bg-white border rounded-xl overflow-hidden shadow-md">
+          <div class="relative">
+            <span class="category-badge bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">Prestasi</span>
+            <img src="/assets/1.jpg" alt="Lomba Robotika" class="w-full h-48 object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=Lomba+Robotika'"/>
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> 10 Agustus 2025</span>
+              <span class="text-xs text-gray-500"><i class="far fa-clock mr-1"></i> 5 menit membaca</span>
+            </div>
+            <h3 class="font-bold text-lg mb-2 line-clamp-2">Tim Robotika SMK Nusantara Raih Juara 1 Tingkat Nasional</h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">Tim robotika dari SMK Nusantara berhasil menyabet juara pertama dalam Kompetisi Robotika Nasional yang diselenggarakan di Jakarta. Tim yang beranggotakan 5 siswa ini mengalahkan 50 tim dari seluruh Indonesia.</p>
+            <div class="flex justify-between items-center">
+              <button onclick="showNewsDetail('berita-1')" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                Baca Selengkapnya
+                <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+              <div class="flex space-x-2">
+                <button class="text-gray-500 hover:text-blue-600" title="Bagikan">
+                  <i class="fas fa-share-alt"></i>
+                </button>
+                <button class="text-gray-500 hover:text-red-600" title="Simpan">
+                  <i class="far fa-bookmark"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <main>
-    <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div class="border rounded-lg overflow-hidden shadow-lg">
-      <img src="/assets/1.jpg" alt="Berita 1" class="w-full" />
-      <div class="p-4">
-        <h2 class="font-bold text-lg">Judul Berita 1</h2>
-        <p class="text-gray-600">Deskripsi singkat berita 1.</p>
-        <button onclick="showDetails('Berita 1')" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Detail</button>
+        <!-- News Card 2 -->
+        <div class="news-card bg-white border rounded-xl overflow-hidden shadow-md">
+          <div class="relative">
+            <span class="category-badge bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full">Kegiatan</span>
+            <img src="/assets/1.jpg" alt="Workshop Programming" class="w-full h-48 object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=Workshop+Programming'"/>
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> 5 Agustus 2025</span>
+              <span class="text-xs text-gray-500"><i class="far fa-clock mr-1"></i> 4 menit membaca</span>
+            </div>
+            <h3 class="font-bold text-lg mb-2 line-clamp-2">Workshop Programming Bersama Google Developer Expert</h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">SMK Nusantara mengadakan workshop programming dengan menghadirkan Google Developer Expert. Kegiatan ini diikuti oleh 100 siswa dari jurusan RPL dan TKJ. Para siswa belajar langsung dari praktisi industri tentang pengembangan aplikasi modern.</p>
+            <div class="flex justify-between items-center">
+              <button onclick="showNewsDetail('berita-2')" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                Baca Selengkapnya
+                <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+              <div class="flex space-x-2">
+                <button class="text-gray-500 hover:text-blue-600" title="Bagikan">
+                  <i class="fas fa-share-alt"></i>
+                </button>
+                <button class="text-gray-500 hover:text-red-600" title="Simpan">
+                  <i class="far fa-bookmark"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Card 3 -->
+        <div class="news-card bg-white border rounded-xl overflow-hidden shadow-md">
+          <div class="relative">
+            <span class="category-badge bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full">Pengumuman</span>
+            <img src="/assets/1.jpg" alt="PPDB 2025" class="w-full h-48 object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=PPDB+2025'"/>
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> 1 Agustus 2025</span>
+              <span class="text-xs text-gray-500"><i class="far fa-clock mr-1"></i> 3 menit membaca</span>
+            </div>
+            <h3 class="font-bold text-lg mb-2 line-clamp-2">Jadwal dan Persyaratan PPDB Tahun Ajaran 2025/2026</h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">SMK Nusantara membuka pendaftaran peserta didik baru untuk tahun ajaran 2025/2026. Calon siswa dapat mendaftar secara online maupun offline mulai tanggal 15 September 2025. Tersedia 5 jurusan dengan total 200 kursi.</p>
+            <div class="flex justify-between items-center">
+              <button onclick="showNewsDetail('berita-3')" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                Baca Selengkapnya
+                <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+              <div class="flex space-x-2">
+                <button class="text-gray-500 hover:text-blue-600" title="Bagikan">
+                  <i class="fas fa-share-alt"></i>
+                </button>
+                <button class="text-gray-500 hover:text-red-600" title="Simpan">
+                  <i class="far fa-bookmark"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Card 4 -->
+        <div class="news-card bg-white border rounded-xl overflow-hidden shadow-md">
+          <div class="relative">
+            <span class="category-badge bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">Akademik</span>
+            <img src="/assets/1.jpg" alt="Ujian Nasional" class="w-full h-48 object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=Ujian+Nasional'"/>
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> 28 Juli 2025</span>
+              <span class="text-xs text-gray-500"><i class="far fa-clock mr-1"></i> 6 menit membaca</span>
+            </div>
+            <h3 class="font-bold text-lg mb-2 line-clamp-2">Persiapan Menghadapi Ujian Akhir Semester Ganjil</h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">Sekolah mengadakan program persiapan khusus bagi siswa untuk menghadapi ujian akhir semester ganjil. Program ini meliputi kelas tambahan, try out, dan konsultasi akademik yang akan dimulai bulan September mendatang.</p>
+            <div class="flex justify-between items-center">
+              <button onclick="showNewsDetail('berita-4')" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                Baca Selengkapnya
+                <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+              <div class="flex space-x-2">
+                <button class="text-gray-500 hover:text-blue-600" title="Bagikan">
+                  <i class="fas fa-share-alt"></i>
+                </button>
+                <button class="text-gray-500 hover:text-red-600" title="Simpan">
+                  <i class="far fa-bookmark"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Card 5 -->
+        <div class="news-card bg-white border rounded-xl overflow-hidden shadow-md">
+          <div class="relative">
+            <span class="category-badge bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">Ekstrakurikuler</span>
+            <img src="/assets/1.jpg" alt="Ekskul Baru" class="w-full h-48 object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=Ekskul+Baru'"/>
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> 25 Juli 2025</span>
+              <span class="text-xs text-gray-500"><i class="far fa-clock mr-1"></i> 4 menit membaca</span>
+            </div>
+            <h3 class="font-bold text-lg mb-2 line-clamp-2">Daftar Ekstrakurikuler Baru Tahun Ajaran 2025/2026</h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">Tahun ajaran baru kali ini, SMK Nusantara menambah 3 ekstrakurikuler baru: Data Science Club, E-Sports, dan Podcasting. Pendaftaran ekstrakurikuler akan dibuka mulai tanggal 20 Agustus 2025.</p>
+            <div class="flex justify-between items-center">
+              <button onclick="showNewsDetail('berita-5')" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                Baca Selengkapnya
+                <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+              <div class="flex space-x-2">
+                <button class="text-gray-500 hover:text-blue-600" title="Bagikan">
+                  <i class="fas fa-share-alt"></i>
+                </button>
+                <button class="text-gray-500 hover:text-red-600" title="Simpan">
+                  <i class="far fa-bookmark"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Card 6 -->
+        <div class="news-card bg-white border rounded-xl overflow-hidden shadow-md">
+          <div class="relative">
+            <span class="category-badge bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full">Kegiatan</span>
+            <img src="/assets/1.jpg" alt="Pentas Seni" class="w-full h-48 object-cover" onerror="this.src='https://via.placeholder.com/400x300?text=Pentas+Seni'"/>
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs text-gray-500"><i class="far fa-calendar-alt mr-1"></i> 20 Juli 2025</span>
+              <span class="text-xs text-gray-500"><i class="far fa-clock mr-1"></i> 3 menit membaca</span>
+            </div>
+            <h3 class="font-bold text-lg mb-2 line-clamp-2">Pentas Seni dan Budaya Akhir Semester Sukses Digelar</h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">Pentas seni dan budaya yang digelar pada akhir semester lalu mendapat sambutan meriah dari seluruh warga sekolah. Acara yang menampilkan berbagai pertunjukan dari siswa ini dihadiri oleh lebih dari 500 pengunjung.</p>
+            <div class="flex justify-between items-center">
+              <button onclick="showNewsDetail('berita-6')" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                Baca Selengkapnya
+                <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+              <div class="flex space-x-2">
+                <button class="text-gray-500 hover:text-blue-600" title="Bagikan">
+                  <i class="fas fa-share-alt"></i>
+                </button>
+                <button class="text-gray-500 hover:text-red-600" title="Simpan">
+                  <i class="far fa-bookmark"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-10 flex justify-center">
+        <nav class="flex items-center space-x-2">
+          <a href="#" class="px-4 py-2 text-sm border rounded-md text-gray-500 hover:bg-gray-50">Sebelumnya</a>
+          <a href="#" class="px-4 py-2 text-sm border rounded-md bg-blue-600 text-white">1</a>
+          <a href="#" class="px-4 py-2 text-sm border rounded-md text-gray-700 hover:bg-gray-50">2</a>
+          <a href="#" class="px-4 py-2 text-sm border rounded-md text-gray-700 hover:bg-gray-50">3</a>
+          <span class="px-2 text-gray-500">...</span>
+          <a href="#" class="px-4 py-2 text-sm border rounded-md text-gray-700 hover:bg-gray-50">8</a>
+          <a href="#" class="px-4 py-2 text-sm border rounded-md text-gray-700 hover:bg-gray-50">Selanjutnya</a>
+        </nav>
       </div>
     </div>
-
-    <div class="border rounded-lg overflow-hidden shadow-lg">
-      <img src="https://via.placeholder.com/300" alt="Berita 2" class="w-full" />
-      <div class="p-4">
-        <h2 class="font-bold text-lg">Judul Berita 2</h2>
-        <p class="text-gray-600">Deskripsi singkat berita 2.</p>
-        <button onclick="showDetails('Berita 2')" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Detail</button>
-      </div>
-    </div>
-
-    <div class="border rounded-lg overflow-hidden shadow-lg">
-      <img src="https://via.placeholder.com/300" alt="Berita 3" class="w-full" />
-      <div class="p-4">
-        <h2 class="font-bold text-lg">Judul Berita 3</h2>
-        <p class="text-gray-600">Deskripsi singkat berita 3.</p>
-        <button onclick="showDetails('Berita 3')" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Detail</button>
-      </div>
-    </div>
-    </div>
-
-    <div id="footer"></div>
   </main>
 
+  <div id="footer"></div>
+
+  <!-- News Detail Modal -->
+  <div id="newsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeNewsDetail()">&times;</span>
+      <div id="newsModalContent">
+        <!-- Content will be loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
   <script>
-    function showDetails(title) {
-      alert("Anda mengklik detail untuk: " + title);
+    // Function to show news detail
+    function showNewsDetail(newsId) {
+      const modal = document.getElementById('newsModal');
+      const modalContent = document.getElementById('newsModalContent');
+      
+      // Define content based on the news ID
+      let content = '';
+      
+      if (newsId === 'berita-utama') {
+        content = `
+          <div class="mb-4">
+            <span class="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full uppercase mb-2 inline-block">Berita Utama</span>
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">Tim Robotika SMK Nusantara Raih Juara Nasional Lomba Robotika</h2>
+            <div class="flex items-center text-gray-500 mb-4">
+              <span class="mr-4"><i class="far fa-calendar-alt mr-1"></i> 10 Agustus 2025</span>
+              <span class="mr-4"><i class="far fa-user mr-1"></i> Admin Sekolah</span>
+              <span><i class="far fa-clock mr-1"></i> 5 menit membaca</span>
+            </div>
+          </div>
+          <img src="/assets/featured-news.jpg" alt="Lomba Robotika" class="w-full h-auto rounded-lg mb-6" onerror="this.src='https://via.placeholder.com/800x400?text=Lomba+Robotika'"/>
+          <div class="prose max-w-none">
+            <p class="mb-4">Tim robotika dari SMK Nusantara berhasil menyabet juara pertama dalam Kompetisi Robotika Nasional yang diselenggarakan di Jakarta pada tanggal 5-7 Agustus 2025. Tim yang beranggotakan 5 siswa ini mengalahkan 50 tim dari seluruh Indonesia.</p>
+            
+            <p class="mb-4">Kompetisi yang berlangsung selama 3 hari ini diikuti oleh sekolah-sekolah terbaik dari seluruh provinsi di Indonesia. Tim SMK Nusantara yang terdiri dari Budi Santoso (XII RPL), Dewi Purnama (XII RPL), Ahmad Rizki (XI TKJ), Siti Nurhaliza (XI RPL), dan Rendi Pratama (X RPL) berhasil menciptakan robot dengan kemampuan navigasi dan penyelesaian masalah yang sangat presisi.</p>
+            
+            <p class="mb-4">"Kami sangat bangga dengan prestasi luar biasa ini. Mereka telah berlatih selama 6 bulan penuh dengan dedikasi yang luar biasa," ujar Pak Hendra Wijaya, guru pembimbing tim robotika SMK Nusantara.</p>
+            
+            <p class="mb-4">Robot yang diberi nama "Nusanbot" ini mampu menyelesaikan semua tantangan dengan waktu tercepat dan tingkat keberhasilan 98%. Prestasi ini membawa pulang trophy, sertifikat, dan hadiah uang tunai sebesar Rp 25 juta untuk sekolah.</p>
+            
+            <p class="mb-4">Kepala Sekolah SMK Nusantara, Ibu Dr. Ratna Dewi, M.Pd, menyampaikan apresiasinya. "Ini adalah bukti bahwa siswa-siswi SMK Nusantara mampu bersaing di tingkat nasional. Kami akan terus mendukung pengembangan minat dan bakat siswa dalam bidang teknologi," ujarnya saat menyambut kepulangan tim.</p>
+            
+            <p class="mb-4">Prestasi ini menambah daftar pencapaian SMK Nusantara dalam bidang teknologi. Tahun lalu, sekolah ini juga berhasil meraih juara 2 dalam Kompetisi Aplikasi Mobile tingkat provinsi.</p>
+          </div>
+          
+          <div class="mt-8 border-t pt-6">
+            <h3 class="text-lg font-bold mb-4">Bagikan Artikel</h3>
+            <div class="flex space-x-3">
+              <button class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700"><i class="fab fa-facebook-f"></i></button>
+              <button class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500"><i class="fab fa-twitter"></i></button>
+              <button class="bg-green-500 text-white p-3 rounded-full hover:bg-green-600"><i class="fab fa-whatsapp"></i></button>
+              <button class="bg-blue-700 text-white p-3 rounded-full hover:bg-blue-800"><i class="fab fa-telegram-plane"></i></button>
+              <button class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700"><i class="fas fa-envelope"></i></button>
+            </div>
+          </div>
+          
+          <div class="mt-8">
+            <h3 class="text-lg font-bold mb-4">Berita Terkait</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="border rounded-lg overflow-hidden">
+                <img src="/assets/2.jpg" alt="Workshop Programming" class="w-full h-32 object-cover" onerror="this.src='https://via.placeholder.com/300x150?text=Workshop'"/>
+                <div class="p-3">
+                  <h4 class="font-medium text-sm line-clamp-2">Workshop Programming Bersama Google Developer Expert</h4>
+                </div>
+              </div>
+              <div class="border rounded-lg overflow-hidden">
+                <img src="/assets/5.jpg" alt="Ekskul Baru" class="w-full h-32 object-cover" onerror="this.src='https://via.placeholder.com/300x150?text=Ekskul'"/>
+                <div class="p-3">
+                  <h4 class="font-medium text-sm line-clamp-2">Daftar Ekstrakurikuler Baru Tahun Ajaran 2025/2026</h4>
+                </div>
+              </div>
+              <div class="border rounded-lg overflow-hidden">
+                <img src="/assets/4.jpg" alt="Ujian Nasional" class="w-full h-32 object-cover" onerror="this.src='https://via.placeholder.com/300x150?text=Ujian'"/>
+                <div class="p-3">
+                  <h4 class="font-medium text-sm line-clamp-2">Persiapan Menghadapi Ujian Akhir Semester Ganjil</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (newsId === 'berita-1') {
+        content = `
+          <div class="mb-4">
+            <span class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase mb-2 inline-block">Prestasi</span>
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">Tim Robotika SMK Nusantara Raih Juara 1 Tingkat Nasional</h2>
+            <div class="flex items-center text-gray-500 mb-4">
+              <span class="mr-4"><i class="far fa-calendar-alt mr-1"></i> 10 Agustus 2025</span>
+              <span class="mr-4"><i class="far fa-user mr-1"></i> Admin Sekolah</span>
+              <span><i class="far fa-clock mr-1"></i> 5 menit membaca</span>
+            </div>
+          </div>
+          <img src="/assets/1.jpg" alt="Lomba Robotika" class="w-full h-auto rounded-lg mb-6" onerror="this.src='https://via.placeholder.com/800x400?text=Lomba+Robotika'"/>
+          <div class="prose max-w-none">
+            <p class="mb-4">Tim robotika dari SMK Nusantara berhasil menyabet juara pertama dalam Kompetisi Robotika Nasional yang diselenggarakan di Jakarta pada tanggal 5-7 Agustus 2025. Tim yang beranggotakan 5 siswa ini mengalahkan 50 tim dari seluruh Indonesia.</p>
+            
+            <p class="mb-4">Kompetisi yang berlangsung selama 3 hari ini diikuti oleh sekolah-sekolah terbaik dari seluruh provinsi di Indonesia. Tim SMK Nusantara yang terdiri dari Budi Santoso (XII RPL), Dewi Purnama (XII RPL), Ahmad Rizki (XI TKJ), Siti Nurhaliza (XI RPL), dan Rendi Pratama (X RPL) berhasil menciptakan robot dengan kemampuan navigasi dan penyelesaian masalah yang sangat presisi.</p>
+            
+            <p class="mb-4">"Kami sangat bangga dengan prestasi luar biasa ini. Mereka telah berlatih selama 6 bulan penuh dengan dedikasi yang luar biasa," ujar Pak Hendra Wijaya, guru pembimbing tim robotika SMK Nusantara.</p>
+            
+            <p class="mb-4">Robot yang diberi nama "Nusanbot" ini mampu menyelesaikan semua tantangan dengan waktu tercepat dan tingkat keberhasilan 98%. Prestasi ini membawa pulang trophy, sertifikat, dan hadiah uang tunai sebesar Rp 25 juta untuk sekolah.</p>
+          </div>
+        `;
+      } else if (newsId === 'berita-2') {
+        content = `
+          <div class="mb-4">
+            <span class="bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase mb-2 inline-block">Kegiatan</span>
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">Workshop Programming Bersama Google Developer Expert</h2>
+            <div class="flex items-center text-gray-500 mb-4">
+              <span class="mr-4"><i class="far fa-calendar-alt mr-1"></i> 5 Agustus 2025</span>
+              <span class="mr-4"><i class="far fa-user mr-1"></i> Humas Sekolah</span>
+              <span><i class="far fa-clock mr-1"></i> 4 menit membaca</span>
+            </div>
+          </div>
+          <img src="/assets/2.jpg" alt="Workshop Programming" class="w-full h-auto rounded-lg mb-6" onerror="this.src='https://via.placeholder.com/800x400?text=Workshop+Programming'"/>
+          <div class="prose max-w-none">
+            <p class="mb-4">SMK Nusantara mengadakan workshop programming dengan menghadirkan Google Developer Expert. Kegiatan ini diikuti oleh 100 siswa dari jurusan RPL dan TKJ. Para siswa belajar langsung dari praktisi industri tentang pengembangan aplikasi modern.</p>
+            
+            <p class="mb-4">Workshop yang diadakan pada tanggal 3-4 Agustus 2025 ini mengambil tema "Modern Web Development with Progressive Web Apps". Materi yang disampaikan meliputi fundamental web development, React.js, dan implementasi PWA untuk aplikasi yang responsif.</p>
+            
+            <p class="mb-4">Ahmad Zaky, seorang Google Developer Expert untuk Web Technologies, menjadi pembicara utama dalam workshop ini. Beliau membagikan pengalamannya bekerja di berbagai proyek teknologi serta tren terkini dalam pengembangan aplikasi web.</p>
+            
+            <p class="mb-4">"Kami sangat senang bisa menghadirkan pakar di bidangnya langsung ke sekolah. Ini adalah kesempatan berharga bagi siswa-siswi untuk mendapatkan wawasan industri terkini," ujar Koordinator Jurusan RPL, Ibu Sinta Wijaya, S.Kom.</p>
+            
+            <p class="mb-4">Para siswa juga berkesempatan untuk menunjukkan proyek mereka dan mendapatkan masukan langsung dari para ahli. Di akhir workshop, 5 proyek terbaik mendapatkan sertifikat khusus dan kesempatan magang di perusahaan teknologi partner.</p>
+          </div>
+        `;
+      } else if (newsId === 'berita-3') {
+        content = `
+          <div class="mb-4">
+            <span class="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full uppercase mb-2 inline-block">Pengumuman</span>
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">Jadwal dan Persyaratan PPDB Tahun Ajaran 2025/2026</h2>
+            <div class="flex items-center text-gray-500 mb-4">
+              <span class="mr-4"><i class="far fa-calendar-alt mr-1"></i> 1 Agustus 2025</span>
+              <span class="mr-4"><i class="far fa-user mr-1"></i> Admin PPDB</span>
+              <span><i class="far fa-clock mr-1"></i> 3 menit membaca</span>
+            </div>
+          </div>
+          <img src="/assets/3.jpg" alt="PPDB 2025" class="w-full h-auto rounded-lg mb-6" onerror="this.src='https://via.placeholder.com/800x400?text=PPDB+2025'"/>
+          <div class="prose max-w-none">
+            <p class="mb-4">SMK Nusantara membuka pendaftaran peserta didik baru untuk tahun ajaran 2025/2026. Calon siswa dapat mendaftar secara online maupun offline mulai tanggal 15 September 2025. Tersedia 5 jurusan dengan total 200 kursi.</p>
+            
+            <h3 class="text-xl font-bold mt-6 mb-3">Jadwal Penting</h3>
+            <ul class="list-disc pl-5 mb-4">
+              <li>Pendaftaran Online: 15 September - 15 Oktober 2025</li>
+              <li>Verifikasi Berkas: 16-20 Oktober 2025</li>
+              <li>Tes Seleksi: 25-26 Oktober 2025</li>
+              <li>Pengumuman Hasil: 1 November 2025</li>
+              <li>Daftar Ulang: 5-10 November 2025</li>
+            </ul>
+            
+            <h3 class="text-xl font-bold mt-6 mb-3">Persyaratan</h3>
+            <ul class="list-disc pl-5 mb-4">
+              <li>Fotokopi ijazah SMP/sederajat (legalisir)</li>
+              <li>Fotokopi raport SMP semester 1-5</li>
+              <li>Fotokopi akta kelahiran</li>
+              <li>Fotokopi kartu keluarga</li>
+              <li>Pas foto berwarna ukuran 3x4 (4 lembar)</li>
+              <li>Surat keterangan sehat dari dokter</li>
+            </ul>
+            
+            <h3 class="text-xl font-bold mt-6 mb-3">Jurusan yang Tersedia</h3>
+            <ul class="list-disc pl-5 mb-4">
+              <li>Rekayasa Perangkat Lunak (RPL) - 50 kursi</li>
+              <li>Teknik Komputer dan Jaringan (TKJ) - 50 kursi</li>
+              <li>Multimedia (MM) - 40 kursi</li>
+              <li>Akuntansi - 30 kursi</li>
+              <li>Pemasaran - 30 kursi</li>
+            </ul>
+            
+            <p class="mb-4">Informasi lebih lanjut dapat diperoleh di website sekolah atau menghubungi panitia PPDB di nomor 021-12345678 pada jam kerja.</p>
+          </div>
+        `;
+      } else {
+        content = `
+          <div class="mb-4">
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">Detail berita ${newsId}</h2>
+            <p>Konten detail untuk ${newsId} akan ditampilkan di sini.</p>
+          </div>
+        `;
+      }
+      
+      // Set content and show modal
+      modalContent.innerHTML = content;
+      modal.style.display = 'block';
+      
+      // Add listener to close on escape key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          closeNewsDetail();
+        }
+      });
     }
+    
+    // Function to close news detail
+    function closeNewsDetail() {
+      const modal = document.getElementById('newsModal');
+      modal.style.display = 'none';
+    }
+    
+    // Filter and search functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Click outside modal to close
+      window.onclick = function(event) {
+        const modal = document.getElementById('newsModal');
+        if (event.target == modal) {
+          closeNewsDetail();
+        }
+      }
+      
+      // Category pill click handler
+      const categoryPills = document.querySelectorAll('.category-pill');
+      categoryPills.forEach(pill => {
+        pill.addEventListener('click', function() {
+          // Reset all pills
+          categoryPills.forEach(p => {
+            p.classList.remove('bg-blue-600', 'text-white');
+            p.classList.add('bg-gray-200', 'text-gray-800');
+          });
+          
+          // Highlight selected pill
+          this.classList.remove('bg-gray-200', 'text-gray-800');
+          this.classList.add('bg-blue-600', 'text-white');
+          
+          // Here you would add code to filter news based on selected category
+          // For demo purposes, we'll just show an alert
+          const category = this.textContent.trim();
+          if (category !== 'Semua') {
+            alert(`Menampilkan berita kategori: ${category}`);
+          } else {
+            alert('Menampilkan semua berita');
+          }
+        });
+      });
+      
+      // Search functionality
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+          const searchTerm = this.value.trim();
+          if (searchTerm) {
+            alert(`Mencari berita dengan kata kunci: ${searchTerm}`);
+          }
+        }
+      });
+      
+      // Category filter change handler
+      const categoryFilter = document.getElementById('categoryFilter');
+      categoryFilter.addEventListener('change', function() {
+        alert(`Filter berdasarkan kategori: ${this.value}`);
+      });
+      
+      // Sort news change handler
+      const sortNews = document.getElementById('sortNews');
+      sortNews.addEventListener('change', function() {
+        alert(`Urutkan berita: ${this.value}`);
+      });
+    });
   </script>
-<script src="/pages/script.js"></script>
+  <script src="/pages/script.js"></script>
 </body>
 </html>
